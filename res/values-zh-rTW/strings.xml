@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="selfUpdaterTicket">發現新版本！</string>
+	<string name="selfUpdaterDesc">現在就去下載！</string>
+	<string name="afterTasteChooseEmailClient">請選擇郵件客戶端</string>
+	<string name="afterTasteFeedback">聯系作者</string>
+	<string name="afterTasteShare">推薦給好友</string>
+	<string name="afterTasteShareSubject">已向您建議使用 %1$s 應用程式
+	</string>
+	<string name="afterTasteFeedbackSubject">關于%1$s……</string>
+	<string name="afterTasteShareContent">我目前正在使用 %1$s，而且我想你應該也會喜歡。在 Android手機上試用這個應用程式吧：%2$s
+	</string>
+	<string name="afterTastePleaseClickAD">覺得該應用不錯的話請點擊一下廣告吧</string>
+</resources>
