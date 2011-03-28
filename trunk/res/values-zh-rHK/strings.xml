@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="selfUpdaterTicket">出新版嘞！</string>
+	<string name="selfUpdaterDesc">而家就去下載！</string>
+	<string name="afterTasteChooseEmailClient">請選擇郵件客戶端</string>
+	<string name="afterTasteFeedback">聯系作者</string>
+	<string name="afterTasteShare">推薦畀好友</string>
+	<string name="afterTasteShareSubject">推薦個軟件 %1$s 畀你
+	</string>
+	<string name="afterTasteFeedbackSubject">關于%1$s……</string>
+	<string name="afterTasteShareContent">我一直用緊 %1$s，我惗你都會中意佢嘅。下載來試下啦：%2$s</string>
+	<string name="afterTastePleaseClickAD">如果覺得尼个軟件唔錯就請點擊一下廣告啦</string>
+</resources>
