@@ -3,7 +3,7 @@
       package="jemuillot.pkg.Utilities"
       android:versionName="1.1" android:versionCode="2">
     <application>
-<activity android:name="jemuillot.pkg.Utilities.AfterSalesFeedbackSelector"/>
+<activity android:name="AfterTasteFeedbackSelector"/>
 
 </application>
     <uses-sdk android:minSdkVersion="3" />
