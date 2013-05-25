@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="selfUpdaterTicket">新しいバーション発見！</string>
-	<string name="selfUpdaterDesc">今すぐダウンロード</string>
-	<string name="afterTasteChooseEmailClient">メールアプリを選択してください</string>
-	<string name="afterTasteFeedback">作者に連絡</string>
-	<string name="afterTasteShare">友に薦め</string>
-	<string name="afterTasteShareSubject">Android アプリケーション、%1$s をお勧めします
-	</string>
-	<string name="afterTasteFeedbackSubject">%1$s について…</string>
-	<string name="afterTasteShareContent">%1$sを使っていますが、あなたも気に入るとおもいます。Android端末でチェックしてみてください：
+
+    <string name="selfUpdaterTicket">新しいバーション発見！</string>
+    <string name="selfUpdaterDesc">今すぐダウンロード</string>
+    <string name="afterTasteChooseEmailClient">メールアプリを選択してください</string>
+    <string name="afterTasteDonate">寄付し</string>
+    <string name="afterTasteFeedback">作者に連絡</string>
+    <string name="afterTasteShare">友に薦め</string>
+    <string name="afterTasteShareSubject">Android アプリケーション、%1$s をお勧めします</string>
+    <string name="afterTasteSuggestion">提案</string>
+    <string name="afterTasteBugReport">エラーを送信</string>
+    <string name="afterTasteSayHello">挨拶</string>
+    <string name="afterTasteSubjectSayHello">%1$sについて……</string>
+    <string name="afterTasteSubjectSuggestion">%1$sについて提案がありますけと……</string>
+    <string name="afterTasteSubjectBugReport">%1$sの使用中にエラーが発生しました……</string>
+    <string name="afterTasteShareContent">%1$sを使っていますが、あなたも気に入るとおもいます。Android端末でチェックしてみてください：
 		%2$s</string>
-	<string name="afterTastePleaseClickAD">このアプリが好きなら広告をクリックしてください</string>
+    <string name="afterTastePleaseClickAD">このアプリが好きなら広告をクリックしてください</string>
+    <string name="afterTastePleaseDonate">このアプリが好きなら寄付してください</string>
 
 </resources>

@@ -8,35 +8,43 @@
 package jemuillot.pkg.Utilities;
 
 public final class R {
+    public static final class array {
+        public static int afterTasteFeedbackSubjects=0x7f040001;
+        public static int afterTasteFeedbackTypes=0x7f040000;
+    }
     public static final class attr {
     }
     public static final class drawable {
-        public static final int update_notification=0x7f020000;
+        public static int update_notification=0x7f020000;
     }
     public static final class id {
-        public static final int afterTasteSelect=0x7f050004;
-        public static final int aftertTasteCategory=0x7f050000;
-        public static final int bugReport=0x7f050002;
-        public static final int sayHello=0x7f050003;
-        public static final int suggestion=0x7f050001;
+        public static int afterTasteSelect=0x7f060004;
+        public static int aftertTasteCategory=0x7f060000;
+        public static int bugReport=0x7f060002;
+        public static int sayHello=0x7f060003;
+        public static int suggestion=0x7f060001;
     }
     public static final class layout {
-        public static final int aftertaste_feedbackcat=0x7f030000;
+        public static int aftertaste_feedbackcat=0x7f030000;
     }
     public static final class string {
-        public static final int afterTasteBugReport=0x7f040006;
-        public static final int afterTasteChooseEmailClient=0x7f040003;
-        public static final int afterTasteEMailAddress=0x7f040002;
-        public static final int afterTasteFeedback=0x7f040004;
-        public static final int afterTasteFeedbackSubject=0x7f04000c;
-        public static final int afterTastePleaseClickAD=0x7f04000a;
-        public static final int afterTasteSayHello=0x7f040007;
-        public static final int afterTasteSelected=0x7f040008;
-        public static final int afterTasteShare=0x7f040009;
-        public static final int afterTasteShareContent=0x7f04000d;
-        public static final int afterTasteShareSubject=0x7f04000b;
-        public static final int afterTasteSuggestion=0x7f040005;
-        public static final int selfUpdaterDesc=0x7f040001;
-        public static final int selfUpdaterTicket=0x7f040000;
+        public static int afterTasteBugReport=0x7f05000c;
+        public static int afterTasteChooseEmailClient=0x7f050003;
+        public static int afterTasteDonate=0x7f050004;
+        public static int afterTasteEMailAddress=0x7f050002;
+        public static int afterTasteFeedback=0x7f050005;
+        public static int afterTastePleaseClickAD=0x7f050008;
+        public static int afterTastePleaseDonate=0x7f050009;
+        public static int afterTasteSayHello=0x7f05000d;
+        public static int afterTasteSelected=0x7f050006;
+        public static int afterTasteShare=0x7f050007;
+        public static int afterTasteShareContent=0x7f050011;
+        public static int afterTasteShareSubject=0x7f05000a;
+        public static int afterTasteSubjectBugReport=0x7f050010;
+        public static int afterTasteSubjectSayHello=0x7f05000e;
+        public static int afterTasteSubjectSuggestion=0x7f05000f;
+        public static int afterTasteSuggestion=0x7f05000b;
+        public static int selfUpdaterDesc=0x7f050001;
+        public static int selfUpdaterTicket=0x7f050000;
     }
 }
