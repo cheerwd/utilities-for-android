@@ -3,7 +3,6 @@ package jemuillot.pkg.Utilities;
 import jemuillot.pkg.Utilities.R;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
