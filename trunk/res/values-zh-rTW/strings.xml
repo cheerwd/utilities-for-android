@@ -11,6 +11,7 @@
     <string name="afterTasteSuggestion">建議</string>
     <string name="afterTasteBugReport">報告錯誤</string>
     <string name="afterTasteSayHello">打個招呼</string>
+    <string name="afterTasteVisitHomepage">訪問主頁</string>
     <string name="afterTasteSubjectSayHello">妳好，關于%1$s……</string>
     <string name="afterTasteSubjectSuggestion">妳好，我想給%1$s提個建議……</string>
     <string name="afterTasteSubjectBugReport">妳好，在使用%1$s的時候發生錯誤……</string>
