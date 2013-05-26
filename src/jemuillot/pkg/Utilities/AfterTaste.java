@@ -32,7 +32,7 @@ public class AfterTaste extends Dialog {
 	 * Set email to null to use the default address. Default mail address =
 	 * R.string.afterTasteEMailAddress You can override the value in your res
 	 */
-	public void feedback(String email) {
+	public void feedback(String email, final String homepage) {
 		// Starting this will FC, I will try to figure it out these days...
 		// cntx.startActivity(new Intent(cntx,
 		// AfterTasteFeedbackSelector.class));
@@ -48,29 +48,41 @@ public class AfterTaste extends Dialog {
 
 					dialog.dismiss();
 
-					String[] items = cntx
-							.getResources()
-							.getStringArray(
-									R.array.afterTasteFeedbackSubjects);
+					if (whichButton >= 3) {
+						
+						Uri uri = Uri.parse(homepage);  
+						
+						Intent it = new Intent(Intent.ACTION_VIEW, uri); 
 
-					String feedbackSelected = items[whichButton];
+						cntx.startActivity(it);
+						
+					} else {
 
-					if (emailAddress == null)
-						emailAddress = cntx
-								.getString(R.string.afterTasteEMailAddress);
+						String[] items = cntx
+								.getResources()
+								.getStringArray(
+										R.array.afterTasteFeedbackSubjects);
 
-					Intent returnIt = new Intent(Intent.ACTION_SEND);
+						String feedbackSelected = items[whichButton];
 
-					String[] tos = { emailAddress };
-					returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
-					returnIt.putExtra(
-							Intent.EXTRA_SUBJECT,
-							String.format(feedbackSelected,
-									Packapp.getAppTitle(cntx)));
-					returnIt.setType("message/rfc882");
-					cntx.startActivity(Intent.createChooser(
-							returnIt,
-							cntx.getString(R.string.afterTasteChooseEmailClient)));
+						if (emailAddress == null)
+							emailAddress = cntx
+									.getString(R.string.afterTasteEMailAddress);
+
+						Intent returnIt = new Intent(
+								Intent.ACTION_SEND);
+
+						String[] tos = { emailAddress };
+						returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
+						returnIt.putExtra(Intent.EXTRA_SUBJECT,
+								String.format(feedbackSelected,
+										Packapp.getAppTitle(cntx)));
+						returnIt.setType("message/rfc882");
+						cntx.startActivity(Intent.createChooser(
+								returnIt,
+								cntx.getString(R.string.afterTasteChooseEmailClient)));
+					}
+
 				}
 			}).create().show();
 

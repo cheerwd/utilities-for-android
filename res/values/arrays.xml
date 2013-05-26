@@ -5,6 +5,7 @@
         <item>@string/afterTasteSuggestion</item>
         <item>@string/afterTasteBugReport</item>
         <item>@string/afterTasteSayHello</item>
+        <item>@string/afterTasteVisitHomepage</item>
     </string-array>
 
         <string-array name="afterTasteFeedbackSubjects">

@@ -5,12 +5,13 @@
     <string name="selfUpdaterDesc">现在就去下载！</string>
     <string name="afterTasteChooseEmailClient">请选择邮件客户端</string>
     <string name="afterTasteDonate">捐助</string>
-    <string name="afterTasteFeedback">写信给作者</string>
+    <string name="afterTasteFeedback">联系作者</string>
     <string name="afterTasteShare">推荐给好友</string>
     <string name="afterTasteShareSubject">推荐个软件 %1$s给你</string>
     <string name="afterTasteSuggestion">建议</string>
     <string name="afterTasteBugReport">报告错误</string>
     <string name="afterTasteSayHello">打个招呼</string>
+    <string name="afterTasteVisitHomepage">访问主页</string>
     <string name="afterTasteSubjectSayHello">你好，关于%1$s……</string>
     <string name="afterTasteSubjectSuggestion">你好，我想给%1$s提个建议……</string>
     <string name="afterTasteSubjectBugReport">你好，在使用%1$s的时候发生错误……</string>
