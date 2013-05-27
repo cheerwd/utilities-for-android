@@ -106,12 +106,18 @@ public class AfterTaste extends Dialog {
 	
 	public void donate(String url) {
 		
-		Uri uri = Uri.parse(url);  
-		
+		String donateUrl = url;
+
+		if (donateUrl == null)
+			donateUrl = String.format(
+					cntx.getString(R.string.afterTasteDonateUrl),
+					cntx.getString(R.string.utilLngStr));
+
+		Uri uri = Uri.parse(donateUrl);
+
 		Intent it = new Intent(Intent.ACTION_VIEW, uri); 
 
-		cntx.startActivity(it);
-		
+		cntx.startActivity(it);		
 		
 	}
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="utilLngStr">global</string>
     <string name="selfUpdaterTicket">New version found!</string>
     <string name="selfUpdaterDesc">Download now!</string>
     <string name="afterTasteEMailAddress">jemuillot@gmail.com</string>
@@ -21,5 +21,5 @@
     <string name="afterTasteSubjectBugReport">Hi, some problems occurred during I was using %1$s ....</string>
     <string name="afterTasteShareContent">The app, %1$s, is very cool and I think you might
 		like it. Check it out here: %2$s</string>
-
+    <string name="afterTasteDonateUrl">https://dl.dropboxusercontent.com/u/1890357/donate/%s.htm</string>
 </resources>
