@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="utilLngStr">ja</string>
     <string name="selfUpdaterTicket">新しいバーション発見！</string>
     <string name="selfUpdaterDesc">今すぐダウンロード</string>
     <string name="afterTasteChooseEmailClient">メールアプリを選択してください</string>
@@ -19,5 +19,4 @@
 		%2$s</string>
     <string name="afterTastePleaseClickAD">このアプリが好きなら広告をクリックしてください</string>
     <string name="afterTastePleaseDonate">このアプリが好きなら寄付してください</string>
-
 </resources>
