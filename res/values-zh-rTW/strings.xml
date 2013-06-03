@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="utilLngStr">zh_rtw</string>
+    <string name="utilPopStrOK">確定</string>
+    <string name="utilPopStrCancel">取消</string>
+    <string name="utilPopStrQuit">退出</string>
     <string name="selfUpdaterTicket">發現新版本！</string>
     <string name="selfUpdaterDesc">現在就去下載！</string>
     <string name="afterTasteChooseEmailClient">請選擇郵件客戶端</string>
@@ -18,4 +22,5 @@
     <string name="afterTasteShareContent">我目前正在使用 %1$s，而且我想你應該也會喜歡。在 Android手機上試用這個應用程式吧：%2$s</string>
     <string name="afterTastePleaseClickAD">覺得該應用不錯的話請點擊一下廣告吧</string>
     <string name="afterTastePleaseDonate">覺得該應用不錯的話可以考慮捐贈作者哦</string>
+
 </resources>

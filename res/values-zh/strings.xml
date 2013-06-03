@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="utilLngStr">zh</string>
+    <string name="utilPopStrOK">确定</string>
+    <string name="utilPopStrCancel">取消</string>
+    <string name="utilPopStrQuit">退出</string>
     <string name="selfUpdaterTicket">发现新版本！</string>
     <string name="selfUpdaterDesc">现在就去下载！</string>
     <string name="afterTasteChooseEmailClient">请选择邮件客户端</string>
@@ -18,4 +22,5 @@
     <string name="afterTasteShareContent">我一直在使用 %1$s，我认为你也会喜爱它。下载来试试吧：%2$s</string>
     <string name="afterTastePleaseClickAD">觉得该应用不错的话请点击一下广告吧</string>
     <string name="afterTastePleaseDonate">觉得该应用不错的话可以考虑捐助作者哦</string>
+
 </resources>
