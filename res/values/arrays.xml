@@ -7,11 +7,11 @@
         <item>@string/afterTasteSayHello</item>
         <item>@string/afterTasteVisitHomepage</item>
     </string-array>
-
-        <string-array name="afterTasteFeedbackSubjects">
+    
+    <string-array name="afterTasteFeedbackSubjects">
         <item>@string/afterTasteSubjectSuggestion</item>
         <item>@string/afterTasteSubjectBugReport</item>
         <item>@string/afterTasteSubjectSayHello</item>
     </string-array>
-    
+
 </resources>

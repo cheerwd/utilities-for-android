@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="utilPopStrCancel">Cancel</string>
     <string name="utilLngStr">global</string>
     <string name="selfUpdaterTicket">New version found!</string>
     <string name="selfUpdaterDesc">Download now!</string>
