@@ -12,8 +12,8 @@
     <string name="afterTasteFeedback">作者に連絡</string>
     <string name="afterTasteShare">友に薦め</string>
     <string name="afterTasteShareSubject">Android アプリケーション、%1$s をお勧めします</string>
-    <string name="afterTasteSuggestion">提案</string>
-    <string name="afterTasteBugReport">エラーを送信</string>
+    <string name="afterTasteSuggestion">ご提案</string>
+    <string name="afterTasteBugReport">バグ情報提供</string>
     <string name="afterTasteSayHello">挨拶</string>
     <string name="afterTasteVisitHomepage">ホームページへ</string>
     <string name="afterTasteSubjectSayHello">%1$sについて……</string>
