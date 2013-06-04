@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="utilLngStr">global</string>
+    <string name="utilLngStr"></string>
     <string name="utilPopStrOK">OK</string>
     <string name="utilPopStrCancel">Cancel</string>
     <string name="utilPopStrQuit">Quit</string>
