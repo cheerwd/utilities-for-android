@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="utilLngStr">zh_rtw</string>
     <string name="utilPopStrOK">確定</string>
     <string name="utilPopStrCancel">取消</string>
     <string name="utilPopStrQuit">退出</string>
