@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="utilLngStr">zh</string>
     <string name="utilPopStrOK">确定</string>
     <string name="utilPopStrCancel">取消</string>
     <string name="utilPopStrQuit">退出</string>

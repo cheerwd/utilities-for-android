@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="utilLngStr">ja</string>
     <string name="utilPopStrOK">OK</string>
     <string name="utilPopStrCancel">キャンセル</string>
     <string name="utilPopStrQuit">終了</string>

@@ -1,6 +1,5 @@
 package jemuillot.pkg.Utilities;
 
-import jemuillot.pkg.Utilities.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 public class AfterTaste extends Dialog {
 
 	private Activity cntx;
-	
+
 	private String emailAddress = null;
 
 	public AfterTaste(Activity c) {
@@ -21,11 +20,13 @@ public class AfterTaste extends Dialog {
 	}
 
 	public void showADClickHint() {
-		Toast.makeText(cntx, R.string.afterTastePleaseClickAD, Toast.LENGTH_LONG).show();
+		Toast.makeText(cntx, R.string.afterTastePleaseClickAD,
+				Toast.LENGTH_LONG).show();
 	}
 
 	public void showDonateClickHint() {
-		Toast.makeText(cntx, R.string.afterTastePleaseDonate, Toast.LENGTH_LONG).show();
+		Toast.makeText(cntx, R.string.afterTastePleaseDonate, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	/**
@@ -40,51 +41,52 @@ public class AfterTaste extends Dialog {
 		emailAddress = email;
 
 		new AlertDialog.Builder(cntx)
-		.setTitle(R.string.afterTasteFeedback)
-		.setSingleChoiceItems(R.array.afterTasteFeedbackTypes, -1,
-			new OnClickListener() {
-				public void onClick(DialogInterface dialog,
-						int whichButton) {
+				.setTitle(R.string.afterTasteFeedback)
+				.setSingleChoiceItems(R.array.afterTasteFeedbackTypes, -1,
+						new OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
 
-					dialog.dismiss();
+								dialog.dismiss();
 
-					if (whichButton >= 3) {
-						
-						Uri uri = Uri.parse(homepage);  
-						
-						Intent it = new Intent(Intent.ACTION_VIEW, uri); 
+								if (whichButton >= 3) {
 
-						cntx.startActivity(it);
-						
-					} else {
+									Uri uri = Uri.parse(homepage);
 
-						String[] items = cntx
-								.getResources()
-								.getStringArray(
-										R.array.afterTasteFeedbackSubjects);
+									Intent it = new Intent(Intent.ACTION_VIEW,
+											uri);
 
-						String feedbackSelected = items[whichButton];
+									cntx.startActivity(it);
 
-						if (emailAddress == null)
-							emailAddress = cntx
-									.getString(R.string.afterTasteEMailAddress);
+								} else {
 
-						Intent returnIt = new Intent(
-								Intent.ACTION_SEND);
+									String[] items = cntx
+											.getResources()
+											.getStringArray(
+													R.array.afterTasteFeedbackSubjects);
 
-						String[] tos = { emailAddress };
-						returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
-						returnIt.putExtra(Intent.EXTRA_SUBJECT,
-								String.format(feedbackSelected,
-										Packapp.getAppTitle(cntx)));
-						returnIt.setType("message/rfc882");
-						cntx.startActivity(Intent.createChooser(
-								returnIt,
-								cntx.getString(R.string.afterTasteChooseEmailClient)));
-					}
+									String feedbackSelected = items[whichButton];
 
-				}
-			}).create().show();
+									if (emailAddress == null)
+										emailAddress = cntx
+												.getString(R.string.afterTasteEMailAddress);
+
+									Intent returnIt = new Intent(
+											Intent.ACTION_SEND);
+
+									String[] tos = { emailAddress };
+									returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
+									returnIt.putExtra(Intent.EXTRA_SUBJECT,
+											String.format(feedbackSelected,
+													Packapp.getAppTitle(cntx)));
+									returnIt.setType("message/rfc882");
+									cntx.startActivity(Intent.createChooser(
+											returnIt,
+											cntx.getString(R.string.afterTasteChooseEmailClient)));
+								}
+
+							}
+						}).create().show();
 
 	}
 
@@ -94,32 +96,49 @@ public class AfterTaste extends Dialog {
 
 		String appTitle = Packapp.getAppTitle(cntx);
 
-		sintent.putExtra(Intent.EXTRA_SUBJECT, String.format(cntx
-				.getString(R.string.afterTasteShareSubject), appTitle));
+		sintent.putExtra(Intent.EXTRA_SUBJECT, String.format(
+				cntx.getString(R.string.afterTasteShareSubject), appTitle));
 
-		sintent.putExtra(Intent.EXTRA_TEXT, String.format(cntx
-				.getString(R.string.afterTasteShareContent), appTitle,
+		sintent.putExtra(Intent.EXTRA_TEXT, String.format(
+				cntx.getString(R.string.afterTasteShareContent), appTitle,
 				downloadUrl));
-		cntx.startActivity(Intent.createChooser(sintent, cntx
-				.getString(R.string.afterTasteShare)));
+		cntx.startActivity(Intent.createChooser(sintent,
+				cntx.getString(R.string.afterTasteShare)));
 	}
-	
+
+	AtAndrutils donateAa = new AtAndrutils();
+
+	class AtAndrutils extends Andrutils {
+
+		protected String checkLocalizedString(String string) {
+
+			string = String.format(
+					cntx.getString(R.string.afterTasteDonateUrl), string);
+
+			if (Andrutils.checkUrl(string))
+				return string;
+
+			return null;
+
+		}
+
+	}
+
 	public void donate(String url) {
-		
+
 		String donateUrl = url;
 
-		if (donateUrl == null)
-			donateUrl = String.format(
-					cntx.getString(R.string.afterTasteDonateUrl),
-					cntx.getString(R.string.utilLngStr));
+		if (donateUrl == null) {
+
+			donateUrl = donateAa.getLocalizedString();
+
+		}
 
 		Uri uri = Uri.parse(donateUrl);
 
-		Intent it = new Intent(Intent.ACTION_VIEW, uri); 
+		Intent it = new Intent(Intent.ACTION_VIEW, uri);
 
-		cntx.startActivity(it);		
-		
+		cntx.startActivity(it);
+
 	}
-
-
 }
