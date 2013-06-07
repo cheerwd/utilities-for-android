@@ -1,10 +1,5 @@
 package jemuillot.pkg.Utilities;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,23 +17,6 @@ public class SelfUpdater {
 
 	public SelfUpdater(Context c) {
 		cntx = c;
-	}
-
-	private static String getHtml(String urlString) {
-		try {
-			StringBuffer html = new StringBuffer();
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					((HttpURLConnection) (new URL(urlString)).openConnection())
-							.getInputStream()));
-			String temp;
-			while ((temp = br.readLine()) != null) {
-				html.append(temp);
-			}
-			return html.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	private String getUpdateValue(String context, String key, String def) {
@@ -113,7 +91,7 @@ public class SelfUpdater {
 	}
 
 	public void doCheck() {
-		String content = getHtml(url);
+		String content = Andrutils.getHtml(url);
 
 		if (null == content)
 			return;

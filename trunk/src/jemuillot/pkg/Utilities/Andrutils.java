@@ -7,6 +7,24 @@ import java.net.URL;
 import java.util.Locale;
 
 public class Andrutils {
+	
+	public static String getHtml(String urlString) {
+		try {
+			StringBuffer html = new StringBuffer();
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					((HttpURLConnection) (new URL(urlString)).openConnection())
+							.getInputStream()));
+			String temp;
+			while ((temp = br.readLine()) != null) {
+				html.append(temp);
+			}
+			return html.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 	protected static boolean checkUrl(String urlString) {
 		try {
