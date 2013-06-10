@@ -24,5 +24,6 @@
     <string name="afterTasteShareContent">The app, %1$s, is very cool and I think you might
 		like it. Check it out here: %2$s</string>
     <string name="afterTasteDonateUrl" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/%s.htm</string>
-
+    <string name="afterTasteDonateUrlLanInfo" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/lan.txt</string>
+    
 </resources>
