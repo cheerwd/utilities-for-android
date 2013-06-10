@@ -4,9 +4,28 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Andrutils {
+	
+	public static ArrayList<String> getHtmlLines(String urlString) {
+		
+		ArrayList<String> ret = new ArrayList<String>();
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					((HttpURLConnection) (new URL(urlString)).openConnection())
+							.getInputStream()));
+			String line;
+			while ((line = br.readLine()) != null) {
+				ret.add(line);
+			}
+			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static String getHtml(String urlString) {
 		try {
@@ -14,9 +33,9 @@ public class Andrutils {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					((HttpURLConnection) (new URL(urlString)).openConnection())
 							.getInputStream()));
-			String temp;
-			while ((temp = br.readLine()) != null) {
-				html.append(temp);
+			String line;
+			while ((line = br.readLine()) != null) {
+				html.append(line);
 			}
 			return html.toString();
 		} catch (Exception e) {

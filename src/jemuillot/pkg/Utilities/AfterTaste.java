@@ -1,5 +1,8 @@
 package jemuillot.pkg.Utilities;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -108,15 +111,38 @@ public class AfterTaste extends Dialog {
 
 	AtAndrutils donateAa = new AtAndrutils();
 
+	private String lanInfoUrlForDonate;
+
+	private String donateUrlFormatted;
+	
+	ArrayList<String> lanInfo;
+
 	class AtAndrutils extends Andrutils {
+
 
 		protected String checkLocalizedString(String string) {
 
-			string = String.format(
-					cntx.getString(R.string.afterTasteDonateUrl), string);
+			if (lanInfoUrlForDonate != null) {
+				if (lanInfo == null)
+					lanInfo = Andrutils.getHtmlLines(lanInfoUrlForDonate);
+			}
 
-			if (Andrutils.checkUrl(string))
-				return string;
+			if (lanInfo == null) {
+				string = String.format(donateUrlFormatted, string);
+
+				if (Andrutils.checkUrl(string))
+					return string;
+			} else {
+
+				Iterator<String> it = lanInfo.iterator();
+
+				while (it.hasNext()) {
+					if (string.equals(it.next())) {
+						return String.format(donateUrlFormatted, string);
+					}
+				}
+
+			}
 
 			return null;
 
@@ -124,14 +150,28 @@ public class AfterTaste extends Dialog {
 
 	}
 
-	public void donate(String url) {
+	public void donate(String url, String lanInfoUrl) {
 
 		String donateUrl = url;
 
 		if (donateUrl == null) {
 
+			lanInfoUrlForDonate = lanInfoUrl;
+
+			if (lanInfoUrlForDonate == null)
+
+				lanInfoUrlForDonate = cntx
+						.getString(R.string.afterTasteDonateUrlLanInfo);
+
+			donateUrlFormatted = cntx.getString(R.string.afterTasteDonateUrl);
+
 			donateUrl = donateAa.getLocalizedString();
 
+		} else if (lanInfoUrl != null) {
+			lanInfoUrlForDonate = lanInfoUrl;
+			donateUrlFormatted = url;
+
+			donateUrl = donateAa.getLocalizedString();
 		}
 
 		Uri uri = Uri.parse(donateUrl);
