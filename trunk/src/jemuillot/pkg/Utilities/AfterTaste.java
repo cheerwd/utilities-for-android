@@ -1,8 +1,5 @@
 package jemuillot.pkg.Utilities;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,8 +11,11 @@ import android.widget.Toast;
 public class AfterTaste extends Dialog {
 
 	private Activity cntx;
+	private Andrutils andrutils = new Andrutils();
 
-	private String emailAddress = null;
+	private Andrutils.LocalizedUrlHelper localizedDonateUrl;
+
+	protected Andrutils.LocalizedUrlHelper localizedHomepage;
 
 	public AfterTaste(Activity c) {
 		super(c);
@@ -36,12 +36,7 @@ public class AfterTaste extends Dialog {
 	 * Set email to null to use the default address. Default mail address =
 	 * R.string.afterTasteEMailAddress You can override the value in your res
 	 */
-	public void feedback(String email, final String homepage) {
-		// Starting this will FC, I will try to figure it out these days...
-		// cntx.startActivity(new Intent(cntx,
-		// AfterTasteFeedbackSelector.class));
-
-		emailAddress = email;
+	public void feedback(final String email, final String homepage, final String homepageLanInfo) {
 
 		new AlertDialog.Builder(cntx)
 				.setTitle(R.string.afterTasteFeedback)
@@ -54,7 +49,27 @@ public class AfterTaste extends Dialog {
 
 								if (whichButton >= 3) {
 
-									Uri uri = Uri.parse(homepage);
+									String hp = homepage;
+									String hpLanInfo = homepageLanInfo;
+
+									if (hp == null)
+									{
+										hp = cntx
+												.getString(R.string.afterTasteDonateUrl);
+										hpLanInfo = cntx
+												.getString(R.string.afterTasteDonateUrlLanInfo);
+										
+									}
+
+									if (localizedHomepage == null) {
+										localizedHomepage = andrutils.createLocalizedUrlHelper();
+										localizedHomepage.setFormattedUrl(hp);
+										localizedHomepage.setLanInfoFromUrl(hpLanInfo);
+									}
+									
+									hp = localizedHomepage.getLocalizedString();
+
+									Uri uri = Uri.parse(hp);
 
 									Intent it = new Intent(Intent.ACTION_VIEW,
 											uri);
@@ -70,14 +85,15 @@ public class AfterTaste extends Dialog {
 
 									String feedbackSelected = items[whichButton];
 
-									if (emailAddress == null)
-										emailAddress = cntx
+									String mailTo = email;
+									if (mailTo == null)
+										mailTo = cntx
 												.getString(R.string.afterTasteEMailAddress);
 
 									Intent returnIt = new Intent(
 											Intent.ACTION_SEND);
 
-									String[] tos = { emailAddress };
+									String[] tos = { mailTo };
 									returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
 									returnIt.putExtra(Intent.EXTRA_SUBJECT,
 											String.format(feedbackSelected,
@@ -109,76 +125,27 @@ public class AfterTaste extends Dialog {
 				cntx.getString(R.string.afterTasteShare)));
 	}
 
-	AtAndrutils donateAa = new AtAndrutils();
-
-	private String lanInfoUrlForDonate;
-
-	private String donateUrlFormatted;
-	
-	ArrayList<String> lanInfo;
-
-	class AtAndrutils extends Andrutils {
-
-
-		protected String checkLocalizedString(String string) {
-
-			if (lanInfoUrlForDonate != null) {
-				if (lanInfo == null)
-					lanInfo = Andrutils.getHtmlLines(lanInfoUrlForDonate);
-			}
-
-			if (lanInfo == null) {
-				string = String.format(donateUrlFormatted, string);
-
-				if (Andrutils.checkUrl(string))
-					return string;
-			} else {
-
-				Iterator<String> it = lanInfo.iterator();
-
-				while (it.hasNext()) {
-					if (string.equals(it.next())) {
-						return String.format(donateUrlFormatted, string);
-					}
-				}
-
-			}
-
-			return null;
-
-		}
-
-	}
-
 	public void donate(String url, String lanInfoUrl) {
 
-		String donateUrl = url;
-
-		if (donateUrl == null) {
-
-			lanInfoUrlForDonate = lanInfoUrl;
-
-			if (lanInfoUrlForDonate == null)
-
-				lanInfoUrlForDonate = cntx
-						.getString(R.string.afterTasteDonateUrlLanInfo);
-
-			donateUrlFormatted = cntx.getString(R.string.afterTasteDonateUrl);
-
-			donateUrl = donateAa.getLocalizedString();
-
-		} else if (lanInfoUrl != null) {
-			lanInfoUrlForDonate = lanInfoUrl;
-			donateUrlFormatted = url;
-
-			donateUrl = donateAa.getLocalizedString();
+		if (url == null) {
+			url = cntx.getString(R.string.afterTasteDonateUrl);
+			lanInfoUrl = cntx.getString(R.string.afterTasteDonateUrlLanInfo);
 		}
 
-		Uri uri = Uri.parse(donateUrl);
+		if (localizedDonateUrl == null) {
+			localizedDonateUrl = andrutils.createLocalizedUrlHelper();
+			localizedDonateUrl.setFormattedUrl(url);
+			localizedDonateUrl.setLanInfoFromUrl(lanInfoUrl);
+		}
+
+		url = localizedDonateUrl.getLocalizedString();
+
+		Uri uri = Uri.parse(url);
 
 		Intent it = new Intent(Intent.ACTION_VIEW, uri);
 
 		cntx.startActivity(it);
 
 	}
+
 }
