@@ -2,31 +2,30 @@ package jemuillot.pkg.Utilities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
-public class AfterTaste extends Dialog {
+public class AfterTaste {
 
-	private Activity cntx;
+	private Activity context;
 
 	private LocalizedPath defaultDonateUrl;
 
 	public AfterTaste(Activity c) {
-		super(c);
-		cntx = c;
+		context = c;
 	}
 
 	public void showADClickHint() {
-		Toast.makeText(cntx, R.string.afterTastePleaseClickAD,
+		Toast.makeText(context, R.string.afterTastePleaseClickAD,
 				Toast.LENGTH_LONG).show();
 	}
 
 	public void showDonateClickHint() {
-		Toast.makeText(cntx, R.string.afterTastePleaseDonate, Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(context, R.string.afterTastePleaseDonate,
+				Toast.LENGTH_LONG).show();
 	}
 
 	/**
@@ -35,7 +34,7 @@ public class AfterTaste extends Dialog {
 	 */
 	public void feedback(final String email, final LocalizedPath homepage) {
 
-		new AlertDialog.Builder(cntx)
+		new AlertDialog.Builder(context)
 				.setTitle(R.string.afterTasteFeedback)
 				.setSingleChoiceItems(R.array.afterTasteFeedbackTypes, -1,
 						new OnClickListener() {
@@ -45,12 +44,12 @@ public class AfterTaste extends Dialog {
 								dialog.dismiss();
 
 								if (whichButton >= 3) {
-									
+
 									donate(homepage);
 
 								} else {
 
-									String[] items = cntx
+									String[] items = context
 											.getResources()
 											.getStringArray(
 													R.array.afterTasteFeedbackSubjects);
@@ -59,7 +58,7 @@ public class AfterTaste extends Dialog {
 
 									String mailTo = email;
 									if (mailTo == null)
-										mailTo = cntx
+										mailTo = context
 												.getString(R.string.afterTasteEMailAddress);
 
 									Intent returnIt = new Intent(
@@ -67,13 +66,15 @@ public class AfterTaste extends Dialog {
 
 									String[] tos = { mailTo };
 									returnIt.putExtra(Intent.EXTRA_EMAIL, tos);
-									returnIt.putExtra(Intent.EXTRA_SUBJECT,
-											String.format(feedbackSelected,
-													Packapp.getAppTitle(cntx)));
+									returnIt.putExtra(
+											Intent.EXTRA_SUBJECT,
+											String.format(
+													feedbackSelected,
+													Packapp.getAppTitle(context)));
 									returnIt.setType("message/rfc882");
-									cntx.startActivity(Intent.createChooser(
+									context.startActivity(Intent.createChooser(
 											returnIt,
-											cntx.getString(R.string.afterTasteChooseEmailClient)));
+											context.getString(R.string.afterTasteChooseEmailClient)));
 								}
 
 							}
@@ -85,16 +86,16 @@ public class AfterTaste extends Dialog {
 		Intent sintent = new Intent(Intent.ACTION_SEND);
 		sintent.setType("text/plain");
 
-		String appTitle = Packapp.getAppTitle(cntx);
+		String appTitle = Packapp.getAppTitle(context);
 
 		sintent.putExtra(Intent.EXTRA_SUBJECT, String.format(
-				cntx.getString(R.string.afterTasteShareSubject), appTitle));
+				context.getString(R.string.afterTasteShareSubject), appTitle));
 
 		sintent.putExtra(Intent.EXTRA_TEXT, String.format(
-				cntx.getString(R.string.afterTasteShareContent), appTitle,
+				context.getString(R.string.afterTasteShareContent), appTitle,
 				downloadUrl));
-		cntx.startActivity(Intent.createChooser(sintent,
-				cntx.getString(R.string.afterTasteShare)));
+		context.startActivity(Intent.createChooser(sintent,
+				context.getString(R.string.afterTasteShare)));
 	}
 
 	public void donate(LocalizedPath localizedUrl) {
@@ -106,9 +107,9 @@ public class AfterTaste extends Dialog {
 			if (defaultDonateUrl == null) {
 
 				defaultDonateUrl = new LocalizedPath(
-						cntx.getString(R.string.afterTasteDonateUrl),
+						context.getString(R.string.afterTasteDonateUrl),
 						LocalizedPath.LOWERCASE_FILENAME,
-						LocalizedPath.getCacheListFromUrl(cntx
+						LocalizedPath.getCacheListFromUrl(context
 								.getString(R.string.afterTasteDonateUrlLanInfo)),
 						null).createLocalizedUrl();
 			}
@@ -121,7 +122,7 @@ public class AfterTaste extends Dialog {
 
 			Intent it = new Intent(Intent.ACTION_VIEW, uri);
 
-			cntx.startActivity(it);
+			context.startActivity(it);
 		}
 
 	}
