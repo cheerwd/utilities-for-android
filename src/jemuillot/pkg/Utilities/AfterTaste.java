@@ -1,7 +1,7 @@
 package jemuillot.pkg.Utilities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -10,11 +10,11 @@ import android.widget.Toast;
 
 public class AfterTaste {
 
-	private Activity context;
+	private Context context;
 
 	private LocalizedPath defaultDonateUrl;
 
-	public AfterTaste(Activity c) {
+	public AfterTaste(Context c) {
 		context = c;
 	}
 
@@ -70,7 +70,7 @@ public class AfterTaste {
 											Intent.EXTRA_SUBJECT,
 											String.format(
 													feedbackSelected,
-													Packapp.getAppTitle(context)));
+													PackApp.getAppTitle(context)));
 									returnIt.setType("message/rfc882");
 									context.startActivity(Intent.createChooser(
 											returnIt,
@@ -86,7 +86,7 @@ public class AfterTaste {
 		Intent sintent = new Intent(Intent.ACTION_SEND);
 		sintent.setType("text/plain");
 
-		String appTitle = Packapp.getAppTitle(context);
+		String appTitle = PackApp.getAppTitle(context);
 
 		sintent.putExtra(Intent.EXTRA_SUBJECT, String.format(
 				context.getString(R.string.afterTasteShareSubject), appTitle));

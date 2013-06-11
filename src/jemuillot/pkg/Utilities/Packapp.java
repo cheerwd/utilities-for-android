@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 
-public class Packapp {
+public class PackApp {
 
 	static public String getAppTitle(Context c) {
 		PackageManager manager = c.getPackageManager();
@@ -28,7 +28,7 @@ public class Packapp {
 			return "1.0";
 		}
 	}
-	
+
 	public static int getAppVersionCode(Context c) {
 		PackageManager manager = c.getPackageManager();
 
@@ -39,6 +39,5 @@ public class Packapp {
 			return 0;
 		}
 	}
-
 
 }
