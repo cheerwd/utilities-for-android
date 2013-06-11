@@ -1,5 +1,8 @@
 package jemuillot.pkg.Utilities;
 
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,11 +15,11 @@ import android.os.HandlerThread;
 public class SelfUpdater {
 
 	private static final int UPDATE_ID = 1;
-	private Context cntx;
+	private Context context;
 	private String url;
 
 	public SelfUpdater(Context c) {
-		cntx = c;
+		context = c;
 	}
 
 	private String getUpdateValue(String context, String key, String def) {
@@ -91,6 +94,61 @@ public class SelfUpdater {
 	}
 
 	public void doCheck() {
+
+		String json = Andrutils.getHtml(url);
+
+		try {
+			JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
+
+			int version_code = object.getInt("version_code");
+
+			int current_version_code = PackApp.getAppVersionCode(context);
+
+			if (version_code > current_version_code) {
+
+				String str_version_desc = object.getString("version_desc");
+
+				String str_download = object.getString("download");
+
+				NotificationManager nm = (NotificationManager) context
+						.getSystemService(Context.NOTIFICATION_SERVICE);
+
+				int icon = R.drawable.update_notification;
+
+				CharSequence tickerText = context
+						.getString(R.string.selfUpdaterTicket);
+
+				long when = System.currentTimeMillis();
+
+				Notification notification = new Notification(icon, tickerText,
+						when);
+
+				CharSequence contentTitle = PackApp.getAppTitle(context) + " "
+						+ str_version_desc;
+				CharSequence contentText = context
+						.getString(R.string.selfUpdaterDesc);
+
+				Intent notificationIntent = new Intent(
+						"android.intent.action.VIEW", Uri.parse(str_download));
+
+				PendingIntent contentIntent = PendingIntent.getActivity(
+						context, 0, notificationIntent, 0);
+
+				notification.defaults |= Notification.DEFAULT_SOUND
+						| Notification.DEFAULT_LIGHTS;
+
+				notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+				notification.setLatestEventInfo(context, contentTitle,
+						contentText, contentIntent);
+
+				nm.notify(UPDATE_ID, notification);
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public void doCheckHtml() {
 		String content = Andrutils.getHtml(url);
 
 		if (null == content)
@@ -100,7 +158,7 @@ public class SelfUpdater {
 
 		int version_code = Integer.parseInt(str_version_code);
 
-		int current_version_code = Packapp.getAppVersionCode(cntx);
+		int current_version_code = PackApp.getAppVersionCode(context);
 
 		if (version_code > current_version_code) {
 
@@ -108,26 +166,27 @@ public class SelfUpdater {
 					"");
 			String str_download = getUpdateValue(content, "download", "");
 
-			NotificationManager nm = (NotificationManager) cntx
+			NotificationManager nm = (NotificationManager) context
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 
 			int icon = R.drawable.update_notification;
 
-			CharSequence tickerText = cntx
+			CharSequence tickerText = context
 					.getString(R.string.selfUpdaterTicket);
 
 			long when = System.currentTimeMillis();
 
 			Notification notification = new Notification(icon, tickerText, when);
 
-			CharSequence contentTitle = Packapp.getAppTitle(cntx) + " "
+			CharSequence contentTitle = PackApp.getAppTitle(context) + " "
 					+ str_version_desc;
-			CharSequence contentText = cntx.getString(R.string.selfUpdaterDesc);
+			CharSequence contentText = context
+					.getString(R.string.selfUpdaterDesc);
 
 			Intent notificationIntent = new Intent(
 					"android.intent.action.VIEW", Uri.parse(str_download));
 
-			PendingIntent contentIntent = PendingIntent.getActivity(cntx, 0,
+			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					notificationIntent, 0);
 
 			notification.defaults |= Notification.DEFAULT_SOUND
@@ -135,7 +194,7 @@ public class SelfUpdater {
 
 			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-			notification.setLatestEventInfo(cntx, contentTitle, contentText,
+			notification.setLatestEventInfo(context, contentTitle, contentText,
 					contentIntent);
 
 			nm.notify(UPDATE_ID, notification);
