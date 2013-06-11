@@ -16,6 +16,7 @@ public class AfterTaste extends Dialog {
 	private Andrutils.LocalizedUrlHelper localizedDonateUrl;
 
 	protected Andrutils.LocalizedUrlHelper localizedHomepage;
+	private LocalizedPath defaultDonateUrl;
 
 	public AfterTaste(Activity c) {
 		super(c);
@@ -36,7 +37,8 @@ public class AfterTaste extends Dialog {
 	 * Set email to null to use the default address. Default mail address =
 	 * R.string.afterTasteEMailAddress You can override the value in your res
 	 */
-	public void feedback(final String email, final String homepage, final String homepageLanInfo) {
+	public void feedback(final String email, final String homepage,
+			final String homepageLanInfo) {
 
 		new AlertDialog.Builder(cntx)
 				.setTitle(R.string.afterTasteFeedback)
@@ -49,32 +51,37 @@ public class AfterTaste extends Dialog {
 
 								if (whichButton >= 3) {
 
-									String hp = homepage;
-									String hpLanInfo = homepageLanInfo;
-
-									if (hp == null)
-									{
-										hp = cntx
-												.getString(R.string.afterTasteDonateUrl);
-										hpLanInfo = cntx
-												.getString(R.string.afterTasteDonateUrlLanInfo);
-										
-									}
-
-									if (localizedHomepage == null) {
-										localizedHomepage = andrutils.createLocalizedUrlHelper();
-										localizedHomepage.setFormattedUrl(hp);
-										localizedHomepage.setLanInfoFromUrl(hpLanInfo);
-									}
-									
-									hp = localizedHomepage.getLocalizedString();
-
-									Uri uri = Uri.parse(hp);
-
-									Intent it = new Intent(Intent.ACTION_VIEW,
-											uri);
-
-									cntx.startActivity(it);
+									donate(new LocalizedPath(homepage,
+											LocalizedPath.GOOGLECODE_WIKI,
+											null, null).createLocalizedUrl());
+//
+//									String hp = homepage;
+//									String hpLanInfo = homepageLanInfo;
+//
+//									if (hp == null) {
+//										hp = cntx
+//												.getString(R.string.afterTasteDonateUrl);
+//										hpLanInfo = cntx
+//												.getString(R.string.afterTasteDonateUrlLanInfo);
+//
+//									}
+//
+//									if (localizedHomepage == null) {
+//										localizedHomepage = andrutils
+//												.createLocalizedUrlHelper();
+//										localizedHomepage.setFormattedUrl(hp);
+//										localizedHomepage
+//												.setLanInfoFromUrl(hpLanInfo);
+//									}
+//
+//									hp = localizedHomepage.getLocalizedString();
+//
+//									Uri uri = Uri.parse(hp);
+//
+//									Intent it = new Intent(Intent.ACTION_VIEW,
+//											uri);
+//
+//									cntx.startActivity(it);
 
 								} else {
 
@@ -125,27 +132,60 @@ public class AfterTaste extends Dialog {
 				cntx.getString(R.string.afterTasteShare)));
 	}
 
+	public void donate(LocalizedPath localizedUrl) {
+
+		String url = localizedUrl == null ? null : localizedUrl
+				.getLocalizedPath();
+
+		if (url == null) {
+			if (defaultDonateUrl == null) {
+
+				defaultDonateUrl = new LocalizedPath(
+						cntx.getString(R.string.afterTasteDonateUrl),
+						LocalizedPath.LOWERCASE_FILENAME,
+						LocalizedPath.getCacheListFromUrl(cntx
+								.getString(R.string.afterTasteDonateUrlLanInfo)),
+						null).createLocalizedUrl();
+			}
+
+			url = defaultDonateUrl.getLocalizedPath();
+		}
+
+		if (url != null) {
+			Uri uri = Uri.parse(url);
+
+			Intent it = new Intent(Intent.ACTION_VIEW, uri);
+
+			cntx.startActivity(it);
+		}
+
+	}
+
 	public void donate(String url, String lanInfoUrl) {
 
 		if (url == null) {
+
 			url = cntx.getString(R.string.afterTasteDonateUrl);
 			lanInfoUrl = cntx.getString(R.string.afterTasteDonateUrlLanInfo);
 		}
 
-		if (localizedDonateUrl == null) {
-			localizedDonateUrl = andrutils.createLocalizedUrlHelper();
-			localizedDonateUrl.setFormattedUrl(url);
-			localizedDonateUrl.setLanInfoFromUrl(lanInfoUrl);
-		}
+		donate(new LocalizedPath(url, LocalizedPath.LOWERCASE_FILENAME,
+				LocalizedPath.getCacheListFromUrl(lanInfoUrl), null)
+				.createLocalizedUrl());
 
-		url = localizedDonateUrl.getLocalizedString();
-
-		Uri uri = Uri.parse(url);
-
-		Intent it = new Intent(Intent.ACTION_VIEW, uri);
-
-		cntx.startActivity(it);
+		// if (localizedDonateUrl == null) {
+		// localizedDonateUrl = andrutils.createLocalizedUrlHelper();
+		// localizedDonateUrl.setFormattedUrl(url);
+		// localizedDonateUrl.setLanInfoFromUrl(lanInfoUrl);
+		// }
+		//
+		// url = localizedDonateUrl.getLocalizedString();
+		//
+		// Uri uri = Uri.parse(url);
+		//
+		// Intent it = new Intent(Intent.ACTION_VIEW, uri);
+		//
+		// cntx.startActivity(it);
 
 	}
-
 }

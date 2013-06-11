@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Locale;
 
 public class Andrutils {
+	
 
 	public interface LocalizedStringChecker {
 		
@@ -25,8 +26,11 @@ public class Andrutils {
 		return new LocalizedUrlHelper();
 	}
 
-	public static ArrayList<String> getHtmlLines(String urlString) {
+	public static ArrayList<String> getHtmlLines(final String urlString) {
 
+		if (urlString == null)
+			return null;
+		
 		ArrayList<String> ret = new ArrayList<String>();
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
