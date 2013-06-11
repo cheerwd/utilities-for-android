@@ -11,11 +11,7 @@ import android.widget.Toast;
 public class AfterTaste extends Dialog {
 
 	private Activity cntx;
-	private Andrutils andrutils = new Andrutils();
 
-	private Andrutils.LocalizedUrlHelper localizedDonateUrl;
-
-	protected Andrutils.LocalizedUrlHelper localizedHomepage;
 	private LocalizedPath defaultDonateUrl;
 
 	public AfterTaste(Activity c) {
@@ -37,8 +33,7 @@ public class AfterTaste extends Dialog {
 	 * Set email to null to use the default address. Default mail address =
 	 * R.string.afterTasteEMailAddress You can override the value in your res
 	 */
-	public void feedback(final String email, final String homepage,
-			final String homepageLanInfo) {
+	public void feedback(final String email, final LocalizedPath homepage) {
 
 		new AlertDialog.Builder(cntx)
 				.setTitle(R.string.afterTasteFeedback)
@@ -50,38 +45,8 @@ public class AfterTaste extends Dialog {
 								dialog.dismiss();
 
 								if (whichButton >= 3) {
-
-									donate(new LocalizedPath(homepage,
-											LocalizedPath.GOOGLECODE_WIKI,
-											null, null).createLocalizedUrl());
-//
-//									String hp = homepage;
-//									String hpLanInfo = homepageLanInfo;
-//
-//									if (hp == null) {
-//										hp = cntx
-//												.getString(R.string.afterTasteDonateUrl);
-//										hpLanInfo = cntx
-//												.getString(R.string.afterTasteDonateUrlLanInfo);
-//
-//									}
-//
-//									if (localizedHomepage == null) {
-//										localizedHomepage = andrutils
-//												.createLocalizedUrlHelper();
-//										localizedHomepage.setFormattedUrl(hp);
-//										localizedHomepage
-//												.setLanInfoFromUrl(hpLanInfo);
-//									}
-//
-//									hp = localizedHomepage.getLocalizedString();
-//
-//									Uri uri = Uri.parse(hp);
-//
-//									Intent it = new Intent(Intent.ACTION_VIEW,
-//											uri);
-//
-//									cntx.startActivity(it);
+									
+									donate(homepage);
 
 								} else {
 
@@ -161,31 +126,4 @@ public class AfterTaste extends Dialog {
 
 	}
 
-	public void donate(String url, String lanInfoUrl) {
-
-		if (url == null) {
-
-			url = cntx.getString(R.string.afterTasteDonateUrl);
-			lanInfoUrl = cntx.getString(R.string.afterTasteDonateUrlLanInfo);
-		}
-
-		donate(new LocalizedPath(url, LocalizedPath.LOWERCASE_FILENAME,
-				LocalizedPath.getCacheListFromUrl(lanInfoUrl), null)
-				.createLocalizedUrl());
-
-		// if (localizedDonateUrl == null) {
-		// localizedDonateUrl = andrutils.createLocalizedUrlHelper();
-		// localizedDonateUrl.setFormattedUrl(url);
-		// localizedDonateUrl.setLanInfoFromUrl(lanInfoUrl);
-		// }
-		//
-		// url = localizedDonateUrl.getLocalizedString();
-		//
-		// Uri uri = Uri.parse(url);
-		//
-		// Intent it = new Intent(Intent.ACTION_VIEW, uri);
-		//
-		// cntx.startActivity(it);
-
-	}
 }
