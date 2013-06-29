@@ -7,20 +7,42 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 
-public class Andrutils {
+class PermissionHelper {
+	public void build() {
 
+		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build());
+	}
+}
+
+public class Andrutils {
+	
+	public static boolean backToHome(Context c)
+	{
+		Intent i = new Intent(Intent.ACTION_MAIN);
+
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addCategory(Intent.CATEGORY_HOME);
+
+		c.startActivity(i);
+		
+		return true;
+	}
 
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public static void permitAccess() {
-		
-		if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 9)
-		{
-			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-			.permitAll().build());
+
+		if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 9) {
+
+			PermissionHelper helper = new PermissionHelper();
+			helper.build();
+
 		}
 
 	}
