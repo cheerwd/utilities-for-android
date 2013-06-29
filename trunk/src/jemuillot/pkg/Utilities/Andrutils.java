@@ -6,13 +6,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.StrictMode;
+
 public class Andrutils {
-	
+
+
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	public static void permitAccess() {
+		
+		if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 9)
+		{
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+			.permitAll().build());
+		}
+
+	}
+
 	public static ArrayList<String> getHtmlLines(final String urlString) {
+
+		permitAccess();
 
 		if (urlString == null)
 			return null;
-		
+
 		ArrayList<String> ret = new ArrayList<String>();
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -30,6 +49,9 @@ public class Andrutils {
 	}
 
 	public static String getHtml(String urlString) {
+
+		permitAccess();
+
 		try {
 			StringBuffer html = new StringBuffer();
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -47,6 +69,9 @@ public class Andrutils {
 	}
 
 	protected static boolean checkUrl(String urlString) {
+
+		permitAccess();
+
 		try {
 
 			new BufferedReader(new InputStreamReader(
@@ -57,6 +82,5 @@ public class Andrutils {
 			return false;
 		}
 	}
-
 
 }
