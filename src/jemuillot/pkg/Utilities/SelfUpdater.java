@@ -93,6 +93,7 @@ public class SelfUpdater {
 		new Handler(handlerThread.getLooper()).post(new checkThread());
 	}
 
+	@SuppressWarnings("deprecation")
 	public void doCheck() {
 
 		String json = Andrutils.getHtml(url);
@@ -148,6 +149,7 @@ public class SelfUpdater {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void doCheckHtml() {
 		String content = Andrutils.getHtml(url);
 
