@@ -14,8 +14,58 @@ public class AfterTaste {
 
 	private LocalizedPath defaultDonateUrl;
 
+	private String defaultEMail;
+
+	private LocalizedPath defaultHomepage;
+
+	private String defaultDownloadUrl;
+
 	public AfterTaste(Context c) {
 		context = c;
+	}
+
+	public void setDefaultDonateUrl(LocalizedPath url) {
+		defaultDonateUrl = url;
+	}
+
+	public void setDefaultEMail(String eMail) {
+		defaultEMail = eMail;
+	}
+
+	public void setDefaultHomepage(LocalizedPath homepage) {
+		defaultHomepage = homepage;
+	}
+
+	public void setDefaultDownloadUrl(String url) {
+		defaultDownloadUrl = url;
+	}
+
+	public boolean showRecommendedChoices() {
+		new AlertDialog.Builder(context)
+				.setTitle(R.string.afterTaste)
+				.setSingleChoiceItems(R.array.afterTasteChoices, -1,
+						new OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
+
+								dialog.dismiss();
+
+								switch (whichButton) {
+								case 0:
+									donate(null);
+									break;
+								case 1:
+									feedback(null, null);
+									break;
+								case 2:
+									share(null);
+									break;
+								}
+
+							}
+						}).create().show();
+
+		return true;
 	}
 
 	public void showADClickHint() {
@@ -45,7 +95,10 @@ public class AfterTaste {
 
 								if (whichButton >= 3) {
 
-									donate(homepage);
+									if (homepage == null)
+										donate(defaultHomepage);
+									else
+										donate(homepage);
 
 								} else {
 
@@ -57,9 +110,15 @@ public class AfterTaste {
 									String feedbackSelected = items[whichButton];
 
 									String mailTo = email;
-									if (mailTo == null)
-										mailTo = context
-												.getString(R.string.afterTasteEMailAddress);
+									if (mailTo == null) {
+
+										mailTo = defaultEMail;
+
+										if (mailTo == null) {
+											mailTo = context
+													.getString(R.string.afterTasteEMailAddress);
+										}
+									}
 
 									Intent returnIt = new Intent(
 											Intent.ACTION_SEND);
@@ -70,7 +129,10 @@ public class AfterTaste {
 											Intent.EXTRA_SUBJECT,
 											String.format(
 													feedbackSelected,
-													PackApp.getAppTitle(context)));
+													PackApp.getAppTitle(context)
+															+ " v"
+															+ PackApp
+																	.getAppVersionName(context)));
 									returnIt.setType("message/rfc882");
 									context.startActivity(Intent.createChooser(
 											returnIt,
@@ -83,6 +145,14 @@ public class AfterTaste {
 	}
 
 	public void share(String downloadUrl) {
+
+		if (downloadUrl == null) {
+			downloadUrl = defaultDownloadUrl;
+
+			if (downloadUrl == null)
+				return;
+		}
+
 		Intent sintent = new Intent(Intent.ACTION_SEND);
 		sintent.setType("text/plain");
 
