@@ -2,6 +2,7 @@ package jemuillot.pkg.Utilities;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.os.StrictMode;
 
 class PermissionHelper {
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void build() {
 
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -21,16 +23,43 @@ class PermissionHelper {
 }
 
 public class Andrutils {
-	
-	public static boolean backToHome(Context c)
-	{
+
+	public static boolean collapseStatusBar(Context c) {
+		try {
+			Object service = c.getSystemService("statusbar");
+			Class<?> claz = Class.forName("android.app.StatusBarManager");
+			Method collapse;
+
+			try {
+				collapse = claz.getMethod("collapse");
+				collapse.setAccessible(true);
+				collapse.invoke(service);
+
+			} catch (Exception e) {
+				try {
+					collapse = claz.getMethod("collapsePanels");
+					collapse.setAccessible(true);
+					collapse.invoke(service);
+				} catch (Exception err) {
+					return false;
+				}
+			}
+
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	public static boolean backToHome(Context c) {
 		Intent i = new Intent(Intent.ACTION_MAIN);
 
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		i.addCategory(Intent.CATEGORY_HOME);
 
 		c.startActivity(i);
-		
+
 		return true;
 	}
 
