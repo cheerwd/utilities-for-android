@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="action_settings" translatable="false">Settings</string>
     <string name="utilPopStrOK">OK</string>
     <string name="utilPopStrCancel">Cancel</string>
@@ -25,5 +26,6 @@
 		like it. Check it out here: %2$s</string>
     <string name="afterTasteDonateUrl" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/%s.htm</string>
     <string name="afterTasteDonateUrlLanInfo" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/lan.txt</string>
-    
+    <string name="afterTaste">After Taste</string>
+
 </resources>

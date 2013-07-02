@@ -21,5 +21,6 @@
     <string name="afterTasteShareContent">我一直用緊 %1$s，我惗你都會中意佢嘅。下載來試下啦：%2$s</string>
     <string name="afterTastePleaseClickAD">如果覺得尼個軟件唔錯就請點擊一下廣告啦</string>
     <string name="afterTastePleaseDonate">如果覺得尼個軟件唔錯可以考慮捐贈</string>
-
+    <string name="afterTaste">試後感</string>
+    
 </resources>

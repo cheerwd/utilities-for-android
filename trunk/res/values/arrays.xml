@@ -7,11 +7,15 @@
         <item>@string/afterTasteSayHello</item>
         <item>@string/afterTasteVisitHomepage</item>
     </string-array>
-    
     <string-array name="afterTasteFeedbackSubjects">
         <item>@string/afterTasteSubjectSuggestion</item>
         <item>@string/afterTasteSubjectBugReport</item>
         <item>@string/afterTasteSubjectSayHello</item>
+    </string-array>
+    <string-array name="afterTasteChoices">
+        <item>@string/afterTasteDonate</item>
+        <item>@string/afterTasteFeedback</item>
+        <item>@string/afterTasteShare</item>
     </string-array>
 
 </resources>

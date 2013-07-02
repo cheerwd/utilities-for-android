@@ -22,5 +22,6 @@
 		%2$s</string>
     <string name="afterTastePleaseClickAD">このアプリが好きなら広告をクリックしてください</string>
     <string name="afterTastePleaseDonate">このアプリが好きなら寄付してください</string>
+    <string name="afterTaste">試した後</string>
 
 </resources>

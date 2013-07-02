@@ -21,5 +21,6 @@
     <string name="afterTasteShareContent">我一直在使用 %1$s，我认为你也会喜爱它。下载来试试吧：%2$s</string>
     <string name="afterTastePleaseClickAD">觉得该应用不错的话请点击一下广告吧</string>
     <string name="afterTastePleaseDonate">觉得该应用不错的话可以考虑捐助作者哦</string>
+    <string name="afterTaste">用后感</string>
 
 </resources>
