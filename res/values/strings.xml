@@ -27,5 +27,18 @@
     <string name="afterTasteDonateUrl" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/%s.htm</string>
     <string name="afterTasteDonateUrlLanInfo" translatable="false">https://dl.dropboxusercontent.com/u/1890357/donate/lan.txt</string>
     <string name="afterTaste">After Taste</string>
+    <string name="checkUpdate">Check Update</string>
+    <string name="selfUpdaterUpdateNow">Update Now</string>
+    <string name="selfUpdaterUpdatePeriod">Update Period</string>
+    <string name="selfUpdaterUpdateConditions">Update Conditions</string>
+    <string name="selfUpdaterUpdateNotFound">Update Not Found</string>
+    <string name="selfUpdaterNeverUpdate">Never Update</string>
+    <string name="selfUpdaterCheckEveryTime">When Application Runs</string>
+    <string name="selfUpdaterCheckEvery3Days">Every 3 Days</string>
+    <string name="selfUpdaterCheckEveryWeek">Every Week</string>
+    <string name="utilPopStrWIFI" translatable="false">WIFI</string>
+    <string name="utilPopStr4GAbove">4G/LTE or Above</string>
+    <string name="utilPopStr3G" translatable="false">3G</string>
+    <string name="utilPopStr2G" translatable="false">2G</string>
 
 </resources>

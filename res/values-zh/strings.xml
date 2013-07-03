@@ -22,5 +22,14 @@
     <string name="afterTastePleaseClickAD">觉得该应用不错的话请点击一下广告吧</string>
     <string name="afterTastePleaseDonate">觉得该应用不错的话可以考虑捐助作者哦</string>
     <string name="afterTaste">用后感</string>
-
+    <string name="checkUpdate">检查更新</string>
+    <string name="selfUpdaterUpdateNow">立刻更新</string>
+    <string name="selfUpdaterUpdatePeriod">更新间隔</string>
+    <string name="selfUpdaterUpdateConditions">更新的联网条件</string>
+    <string name="selfUpdaterUpdateNotFound">已经是最新版</string>
+    <string name="selfUpdaterNeverUpdate">手动</string>
+    <string name="selfUpdaterCheckEveryTime">程序启动时</string>
+    <string name="selfUpdaterCheckEvery3Days">每3天</string>
+    <string name="selfUpdaterCheckEveryWeek">每周</string>
+    <string name="utilPopStr4GAbove">4G、LTE或更好的移动网络</string>
 </resources>

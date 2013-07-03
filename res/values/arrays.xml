@@ -17,5 +17,21 @@
         <item>@string/afterTasteFeedback</item>
         <item>@string/afterTasteShare</item>
     </string-array>
+    <string-array name="selfUpdaterOptions">
+        <item>@string/selfUpdaterUpdateNow</item>
+        <item>@string/selfUpdaterUpdatePeriod</item>
+        <item>@string/selfUpdaterUpdateConditions</item>
+    </string-array>
+    <string-array name="selfUpdaterPeriodList">
+        <item>@string/selfUpdaterNeverUpdate</item>
+        <item>@string/selfUpdaterCheckEveryTime</item>
+        <item>@string/selfUpdaterCheckEvery3Days</item>
+        <item>@string/selfUpdaterCheckEveryWeek</item>
+    </string-array>
+    <string-array name="selfUpdaterConnectionList">
+        <item>@string/utilPopStr4GAbove</item>
+        <item>@string/utilPopStr3G</item>
+        <item>@string/utilPopStr2G</item>
+    </string-array>
 
 </resources>
