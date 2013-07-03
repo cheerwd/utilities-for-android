@@ -41,29 +41,26 @@ public class AfterTaste {
 	}
 
 	public boolean showRecommendedChoices() {
-		new AlertDialog.Builder(context)
-				.setTitle(R.string.afterTaste)
-				.setSingleChoiceItems(R.array.afterTasteChoices, -1,
-						new OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
+		new AlertDialog.Builder(context).setTitle(R.string.afterTaste)
+				.setItems(R.array.afterTasteChoices, new OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
 
-								dialog.dismiss();
+						dialog.dismiss();
 
-								switch (whichButton) {
-								case 0:
-									donate(null);
-									break;
-								case 1:
-									feedback(null, null);
-									break;
-								case 2:
-									share(null);
-									break;
-								}
+						switch (whichButton) {
+						case 0:
+							donate(null);
+							break;
+						case 1:
+							feedback(null, null);
+							break;
+						case 2:
+							share(null);
+							break;
+						}
 
-							}
-						}).create().show();
+					}
+				}).create().show();
 
 		return true;
 	}
@@ -86,7 +83,7 @@ public class AfterTaste {
 
 		new AlertDialog.Builder(context)
 				.setTitle(R.string.afterTasteFeedback)
-				.setSingleChoiceItems(R.array.afterTasteFeedbackTypes, -1,
+				.setItems(R.array.afterTasteFeedbackTypes,
 						new OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
