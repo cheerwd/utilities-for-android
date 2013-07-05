@@ -26,21 +26,58 @@ import android.widget.Toast;
 public class SelfUpdater {
 
 	private static final int UPDATE_ID = 1;
+	private static final String PREF_FILENAME = "SelfUpdate";
 	private Context context;
 	private String url;
-	private SelfUpdaterNoUpdateNotifier onUpdateNoteFound;
+	private NoUpdateNotifier onUpdateNoteFound;
+	private OnRecommendedDownloadUrlUpdated onRecommendedDownloadUrlUpdated;
 
-	public interface SelfUpdaterNoUpdateNotifier {
+	public Preferences preferences = new Preferences();
+	protected boolean checkedByUser = false;
+
+	public interface NoUpdateNotifier {
 		boolean onUpdateNotFound();
+	}
+
+	public interface OnRecommendedDownloadUrlUpdated {
+		boolean onRecommendedDownloadUrlUpdated(final String url);
+	}
+
+	public void setOnRecommendedDownloadUrlUpdatedNotifier(
+			OnRecommendedDownloadUrlUpdated notifier) {
+		onRecommendedDownloadUrlUpdated = notifier;
+	}
+
+	public void setNoUpdateNotifier(NoUpdateNotifier notifier) {
+		onUpdateNoteFound = notifier;
 	}
 
 	public SelfUpdater(Context c) {
 		context = c;
+
+		loadSettings();
 	}
 
-	public SelfUpdaterNoUpdateNotifier defaultNoUpdateNotifier =
+	private void loadSettings() {
+		SharedPreferences prefs = context.getSharedPreferences(PREF_FILENAME,
+				Context.MODE_MULTI_PROCESS);
 
-	new SelfUpdaterNoUpdateNotifier() {
+		preferences.read(prefs);
+	}
+
+	private void saveSettings() {
+
+		SharedPreferences.Editor editor = context.getSharedPreferences(
+				PREF_FILENAME, Context.MODE_MULTI_PROCESS).edit();
+
+		preferences.write(editor);
+
+		editor.commit();
+	}
+
+	public NoUpdateNotifier defaultNoUpdateNotifier =
+
+	new NoUpdateNotifier() {
 
 		@Override
 		public boolean onUpdateNotFound() {
@@ -65,7 +102,7 @@ public class SelfUpdater {
 		private static final int VIA_2G = 2;
 
 		private static final int NEVER_CHECK = 0;
-		private static final int ALWAYS_CHECK = 1;
+		// private static final int ALWAYS_CHECK = 1;
 		private static final int CHECK_PER_3DAYS = 2;
 		private static final int CHECK_PER_WEEK = 3;
 
@@ -76,21 +113,6 @@ public class SelfUpdater {
 		protected long previousCheckedTime;
 
 		protected boolean[] connections = { true, true, false };
-
-		public void read(DataAccesser loader) {
-			loader.open();
-
-			// Integer period = (Integer)loader.get(PREF_PERIOD, int.class,
-			// (Integer)period);
-			//
-			// for (int i = 0; i < connections.length; i++) {
-			// connections[i] = loader.get(prefConnections[i], boolean.class,
-			// connections[i]);
-			// }
-			//
-			loader.close();
-
-		}
 
 		public void read(SharedPreferences prefs) {
 			period = prefs.getInt(PREF_PERIOD, period);
@@ -159,17 +181,8 @@ public class SelfUpdater {
 
 	}
 
-	public Preferences preferences = new Preferences();
-	protected boolean checkedByUser = false;
-
-	public void setNoUpdateNotifier(SelfUpdaterNoUpdateNotifier notifier) {
-		onUpdateNoteFound = notifier;
-	}
-
 	public boolean checkUpdateScheduled() {
 		if (preferences.checkExpired()) {
-
-			boolean flag = false;
 
 			ConnectivityManager manager = (ConnectivityManager) context
 					.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -241,6 +254,7 @@ public class SelfUpdater {
 							public void onClick(DialogInterface dialog,
 									int which, boolean isChecked) {
 								preferences.connections[which] = isChecked;
+								saveSettings();
 							}
 						}).create().show();
 
@@ -261,6 +275,7 @@ public class SelfUpdater {
 									int whichButton) {
 
 								preferences.period = whichButton;
+								saveSettings();
 							}
 						}).create().show();
 
@@ -342,6 +357,8 @@ public class SelfUpdater {
 
 		preferences.previousCheckedTime = System.currentTimeMillis();
 
+		saveSettings();
+
 		String json = Andrutils.getHtml(url);
 
 		try {
@@ -392,6 +409,15 @@ public class SelfUpdater {
 				nm.notify(UPDATE_ID, notification);
 			}
 
+			else if (version_code == current_version_code) {
+
+				if (onRecommendedDownloadUrlUpdated != null) {
+					onRecommendedDownloadUrlUpdated
+							.onRecommendedDownloadUrlUpdated(object
+									.getString("download"));
+				}
+			}
+
 			if (checkedByUser && (onUpdateNoteFound != null))
 				onUpdateNoteFound.onUpdateNotFound();
 
@@ -399,7 +425,7 @@ public class SelfUpdater {
 			if (checkedByUser && (onUpdateNoteFound != null))
 				onUpdateNoteFound.onUpdateNotFound();
 		}
-		
+
 		checkedByUser = false;
 	}
 
