@@ -40,5 +40,7 @@
     <string name="utilPopStr4GAbove">4G/LTE or Above</string>
     <string name="utilPopStr3G" translatable="false">3G</string>
     <string name="utilPopStr2G" translatable="false">2G</string>
+    <string name="utilPopStrPassNextTime">Don\'t show this next time</string>
+    <string name="utilPopStrClose">Close</string>
 
 </resources>
