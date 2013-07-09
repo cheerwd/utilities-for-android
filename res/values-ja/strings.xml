@@ -33,5 +33,7 @@
     <string name="selfUpdaterCheckEvery3Days">3日ごとに</string>
     <string name="selfUpdaterCheckEveryWeek">毎週</string>
     <string name="utilPopStr4GAbove">4G、またはLTEのごとき良い接続</string>
+    <string name="utilPopStrPassNextTime">これからは表示しない</string>
+    <string name="utilPopStrClose">閉じる</string>
 
 </resources>

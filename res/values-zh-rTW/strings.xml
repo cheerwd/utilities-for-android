@@ -32,5 +32,7 @@
     <string name="selfUpdaterCheckEvery3Days">每3天</string>
     <string name="selfUpdaterCheckEveryWeek">每周</string>
     <string name="utilPopStr4GAbove">4G、LTE或更好的移動網路</string>
+    <string name="utilPopStrPassNextTime">不再顯示</string>
+    <string name="utilPopStrClose">關閉</string>
 
 </resources>

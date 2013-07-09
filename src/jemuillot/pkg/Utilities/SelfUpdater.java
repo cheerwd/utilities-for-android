@@ -409,17 +409,20 @@ public class SelfUpdater {
 				nm.notify(UPDATE_ID, notification);
 			}
 
-			else if (version_code == current_version_code) {
+			else {
+				if (checkedByUser && (onUpdateNoteFound != null))
+					onUpdateNoteFound.onUpdateNotFound();
 
-				if (onRecommendedDownloadUrlUpdated != null) {
-					onRecommendedDownloadUrlUpdated
-							.onRecommendedDownloadUrlUpdated(object
-									.getString("download"));
+				if (version_code == current_version_code) {
+
+					if (onRecommendedDownloadUrlUpdated != null) {
+						onRecommendedDownloadUrlUpdated
+								.onRecommendedDownloadUrlUpdated(object
+										.getString("download"));
+					}
 				}
-			}
 
-			if (checkedByUser && (onUpdateNoteFound != null))
-				onUpdateNoteFound.onUpdateNotFound();
+			}
 
 		} catch (Exception e) {
 			if (checkedByUser && (onUpdateNoteFound != null))
