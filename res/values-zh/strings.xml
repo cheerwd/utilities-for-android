@@ -34,5 +34,6 @@
     <string name="utilPopStr4GAbove">4G、LTE或更好的移动网络</string>
     <string name="utilPopStrPassNextTime">不再显示</string>
     <string name="utilPopStrClose">关闭</string>
+    <string name="utilPopStrRunOnBoot">开机后自启动</string>
 
 </resources>

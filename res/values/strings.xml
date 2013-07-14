@@ -42,5 +42,6 @@
     <string name="utilPopStr2G" translatable="false">2G</string>
     <string name="utilPopStrPassNextTime">Don\'t show this next time</string>
     <string name="utilPopStrClose">Close</string>
+    <string name="utilPopStrRunOnBoot">Run after system boots</string>
 
 </resources>

@@ -24,6 +24,10 @@ class PermissionHelper {
 
 public class Andrutils {
 
+	public static void ApplicationExit() {
+		android.os.Process.killProcess(android.os.Process.myPid());
+	}
+
 	public static boolean collapseStatusBar(Context c) {
 		try {
 			Object service = c.getSystemService("statusbar");
@@ -48,7 +52,7 @@ public class Andrutils {
 		} catch (Exception e) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
