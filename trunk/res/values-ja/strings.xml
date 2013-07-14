@@ -35,5 +35,6 @@
     <string name="utilPopStr4GAbove">4G、またはLTEのごとき良い接続</string>
     <string name="utilPopStrPassNextTime">これからは表示しない</string>
     <string name="utilPopStrClose">閉じる</string>
-
+    <string name="utilPopStrRunOnBoot">システム再起動後自動起動する</string>
+    
 </resources>
