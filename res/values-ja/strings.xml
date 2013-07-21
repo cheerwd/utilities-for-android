@@ -36,5 +36,6 @@
     <string name="utilPopStrPassNextTime">これからは表示しない</string>
     <string name="utilPopStrClose">閉じる</string>
     <string name="utilPopStrRunOnBoot">システム再起動後自動起動する</string>
-    
+    <string name="utilPopStrTips">ヒント</string>
+
 </resources>
