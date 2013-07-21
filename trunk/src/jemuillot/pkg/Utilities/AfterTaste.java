@@ -195,7 +195,6 @@ public class AfterTaste {
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return context;
 	}
 

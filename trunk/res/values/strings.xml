@@ -43,5 +43,6 @@
     <string name="utilPopStrPassNextTime">Don\'t show this next time</string>
     <string name="utilPopStrClose">Close</string>
     <string name="utilPopStrRunOnBoot">Run after system boots</string>
+    <string name="utilPopStrTips">Tips</string>
 
 </resources>

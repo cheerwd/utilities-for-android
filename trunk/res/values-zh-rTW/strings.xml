@@ -35,5 +35,6 @@
     <string name="utilPopStrPassNextTime">不再顯示</string>
     <string name="utilPopStrClose">關閉</string>
     <string name="utilPopStrRunOnBoot">系統啓動後自動運行</string>
+    <string name="utilPopStrTips">小貼士</string>
 
 </resources>
