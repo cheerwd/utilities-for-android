@@ -13,7 +13,6 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
@@ -32,7 +31,7 @@ public class SelfUpdater {
 	private NoUpdateNotifier onUpdateNoteFound;
 	private OnRecommendedDownloadUrlUpdated onRecommendedDownloadUrlUpdated;
 
-	public Preferences preferences = new Preferences();
+	public Preferences preferences;
 	protected boolean checkedByUser = false;
 
 	public interface NoUpdateNotifier {
@@ -55,24 +54,17 @@ public class SelfUpdater {
 	public SelfUpdater(Context c) {
 		context = c;
 
+		preferences = new Preferences(c, PREF_FILENAME);
+
 		loadSettings();
 	}
 
 	private void loadSettings() {
-		SharedPreferences prefs = context.getSharedPreferences(PREF_FILENAME,
-				Context.MODE_MULTI_PROCESS);
-
-		preferences.read(prefs);
+		preferences.load();
 	}
 
 	private void saveSettings() {
-
-		SharedPreferences.Editor editor = context.getSharedPreferences(
-				PREF_FILENAME, Context.MODE_MULTI_PROCESS).edit();
-
-		preferences.write(editor);
-
-		editor.commit();
+		preferences.save();
 	}
 
 	public NoUpdateNotifier defaultNoUpdateNotifier =
@@ -88,14 +80,16 @@ public class SelfUpdater {
 		}
 	};
 
-	public class Preferences {
-		private static final String PREF_PERIOD = "SelfUpdaterUpdatePeriod";
-		private static final String PREF_PREV_CHECK = "SelfUpdaterPreviousCheckTime";
+	public class Preferences extends AutoPreferences {
 
-		private static final String PREF_WIFI = "SelfUpdaterUpdateViaWIFI";
-		private static final String PREF_4G = "SelfUpdaterUpdateVia4G";
-		private static final String PREF_3G = "SelfUpdaterUpdateVia3G";
-		private static final String PREF_2G = "SelfUpdaterUpdateVia2G";
+		public boolean[] connections = { true, true, false };
+		public int period = 2; // Daily
+		public long previousCheckedTime;
+
+		public Preferences(Context context, String filename) {
+			super(context, filename);
+			// TODO Auto-generated constructor stub
+		}
 
 		private static final int VIA_4GPLUS = 0;
 		private static final int VIA_3G = 1;
@@ -103,39 +97,9 @@ public class SelfUpdater {
 
 		private static final int NEVER_CHECK = 0;
 		// private static final int ALWAYS_CHECK = 1;
-		private static final int CHECK_PER_3DAYS = 2;
-		private static final int CHECK_PER_WEEK = 3;
-
-		String[] prefConnections = { PREF_WIFI, PREF_4G, PREF_3G, PREF_2G };
-
-		protected int period = 2; // 3 Days
-
-		protected long previousCheckedTime;
-
-		protected boolean[] connections = { true, true, false };
-
-		public void read(SharedPreferences prefs) {
-			period = prefs.getInt(PREF_PERIOD, period);
-			previousCheckedTime = prefs.getLong(PREF_PREV_CHECK,
-					previousCheckedTime);
-
-			for (int i = 0; i < connections.length; i++) {
-				connections[i] = prefs.getBoolean(prefConnections[i],
-						connections[i]);
-			}
-
-		}
-
-		public void write(SharedPreferences.Editor editor) {
-
-			editor.putInt(PREF_PERIOD, period);
-			editor.putLong(PREF_PREV_CHECK, previousCheckedTime);
-
-			for (int i = 0; i < connections.length; i++) {
-				editor.putBoolean(prefConnections[i], connections[i]);
-			}
-
-		}
+		private static final int CHECK_DAILY = 2;
+		private static final int CHECK_PER_3DAYS = 3;
+		private static final int CHECK_PER_WEEK = 4;
 
 		public boolean checkExpired() {
 
@@ -145,6 +109,8 @@ public class SelfUpdater {
 			switch (period) {
 			case NEVER_CHECK:
 				return false;
+			case CHECK_DAILY:
+				return duration >= 24 * 60 * 60 * 1000;
 			case CHECK_PER_3DAYS:
 				return duration >= 3 * 24 * 60 * 60 * 1000;
 			case CHECK_PER_WEEK:
