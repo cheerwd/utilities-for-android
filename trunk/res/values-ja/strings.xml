@@ -37,5 +37,6 @@
     <string name="utilPopStrClose">閉じる</string>
     <string name="utilPopStrRunOnBoot">システム再起動後自動起動する</string>
     <string name="utilPopStrTips">ヒント</string>
-
+    <string name="selfUpdaterCheckDaily">毎日</string>
+    
 </resources>

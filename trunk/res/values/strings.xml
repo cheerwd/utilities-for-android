@@ -44,5 +44,6 @@
     <string name="utilPopStrClose">Close</string>
     <string name="utilPopStrRunOnBoot">Run after system boots</string>
     <string name="utilPopStrTips">Tips</string>
+    <string name="selfUpdaterCheckDaily">Daily</string>
 
 </resources>

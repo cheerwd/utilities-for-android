@@ -36,5 +36,6 @@
     <string name="utilPopStrClose">关闭</string>
     <string name="utilPopStrRunOnBoot">开机后自启动</string>
     <string name="utilPopStrTips">小提示</string>
-
+    <string name="selfUpdaterCheckDaily">每天</string>
+    
 </resources>

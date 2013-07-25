@@ -25,6 +25,7 @@
     <string-array name="selfUpdaterPeriodList">
         <item>@string/selfUpdaterNeverUpdate</item>
         <item>@string/selfUpdaterCheckEveryTime</item>
+        <item>@string/selfUpdaterCheckDaily</item>
         <item>@string/selfUpdaterCheckEvery3Days</item>
         <item>@string/selfUpdaterCheckEveryWeek</item>
     </string-array>
