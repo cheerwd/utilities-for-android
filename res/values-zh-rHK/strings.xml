@@ -38,4 +38,27 @@
     <string name="utilPopStrTips">小貼士</string>
     <string name="selfUpdaterCheckDaily">每壹日</string>
     
+     <string name="utilCannotGetRooted">獲取唔到Root權限或者畀用戶拒絕！</string>
+    <string name="utilBusyBoxNotFound">冇安裝BusyBox！</string>
+    <string name="utilBusyBoxIntro">复制應用程序到系統區需要安裝BusyBox。
+        \n請下載后安裝，再試一次。</string>
+    <string name="utilPopStrError">錯誤</string>
+    <string name="utilPopStrReboot">重啓</string>
+    <string name="utilPopStrYes">是</string>
+    <string name="utilPopStrNo">否</string>
+    <string name="utilPopStrRebootReason">重啓之後先可以生效。
+        \n需唔需要即刻重啓？</string>
+    <string name="utilPopStrRequireRoot">需要Root權限</string>
+    <string name="utilPopStrRequireRootDetail">要本功能生效需要Root權限。
+        \n要唔要申請Root權限？</string>
+    <string name="utilPopStrMultiInstallationFound">發現重複安裝相同嘅版本</string>
+    <string name="utilPopStrMultiInstallationFoundExplain">响系統同用戶區安裝相同嘅版本會出现各種異常。
+        \n\n用戶區嘅版本將會畀刪除。
+        \n程序退出後請手動重新啓动本程序。</string>
+    <string name="utilPopStrDownloadFromBrowser">用浏覽器</string>
+    <string name="utilPopStrDownloadFromMarket">用市場</string>
+    <string name="packAppUpdateToSys">更新到系統內存</string>
+    <string name="packAppUpdateToSysExplain">更新歌程序需要移動到系統區先可以保證正常運行。
+        \n\n移動過程會极速程序嘅运行。
+        \n\n之後請手動重新啓动本程序。</string>
 </resources>

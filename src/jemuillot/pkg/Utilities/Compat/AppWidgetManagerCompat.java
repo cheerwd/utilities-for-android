@@ -18,6 +18,8 @@ class AppWidgetManagerCompat3 implements
 
 	protected AppWidgetManager awm;
 
+	private boolean bindFailed = false;
+
 	public AppWidgetManagerCompat3(Context context) {
 		this.context = context;
 		awm = AppWidgetManager.getInstance(context);
@@ -27,11 +29,9 @@ class AppWidgetManagerCompat3 implements
 	public boolean bindAppWidgetIdIfAllowed(int appWidgetId,
 			ComponentName provider) {
 
+		bindFailed = false;
+
 		Method m = null;
-
-		Method[] methods = AppWidgetManager.class.getMethods();
-
-		Log.v(TAG, methods.toString());
 
 		try {
 			m = AppWidgetManager.class.getMethod("bindAppWidgetIdIfAllowed",
@@ -42,13 +42,14 @@ class AppWidgetManagerCompat3 implements
 				m = AppWidgetManager.class.getMethod("bindAppWidgetId",
 						new Class[] { Integer.TYPE, ComponentName.class });
 			} catch (NoSuchMethodException e2) {
-
+				bindFailed = true;
 				Log.v(TAG, "bindAppWidgetId Doesn't Exist");
 			}
 			if (m != null) {
 				try {
 					m.invoke(awm, appWidgetId, provider);
 				} catch (Exception e3) {
+					bindFailed = true;
 					Log.v(TAG, "bindAppWidgetId Failed: " + e3.toString());
 
 				}
@@ -61,6 +62,7 @@ class AppWidgetManagerCompat3 implements
 			try {
 				return (Boolean) m.invoke(awm, appWidgetId, provider);
 			} catch (Exception e) {
+				bindFailed = true;
 				Log.v(TAG, "bindAppWidgetIdIfAllowed Failed");
 			}
 		}
@@ -70,19 +72,50 @@ class AppWidgetManagerCompat3 implements
 
 	@Override
 	public Bundle getAppWidgetOptions(int appWidgetId) {
-		// TODO Auto-generated method stub
+		Method m = null;
+
+		try {
+			m = AppWidgetManager.class.getMethod("getAppWidgetOptions",
+					new Class[] { Integer.TYPE });
+		} catch (NoSuchMethodException e) {
+
+		}
+		if (m != null) {
+			try {
+				return (Bundle) m.invoke(awm, appWidgetId);
+			} catch (Exception e) {
+			}
+		}
+
 		return null;
 	}
 
 	@Override
 	public void updateAppWidgetOptions(int appWidgetId, Bundle options) {
-		// TODO Auto-generated method stub
+
+		if (options == null)
+			return;
+
+		Method m = null;
+
+		try {
+			m = AppWidgetManager.class.getMethod("updateAppWidgetOptions",
+					new Class[] { Integer.TYPE, Bundle.class });
+		} catch (NoSuchMethodException e) {
+
+		}
+		if (m != null) {
+			try {
+				m.invoke(awm, appWidgetId, options);
+			} catch (Exception e) {
+			}
+		}
 
 	}
 
 	@Override
 	public boolean supportUserBind() {
-		return false;
+		return !bindFailed;
 	}
 
 	@Override

@@ -37,5 +37,28 @@
     <string name="utilPopStrRunOnBoot">开机后自启动</string>
     <string name="utilPopStrTips">小提示</string>
     <string name="selfUpdaterCheckDaily">每天</string>
-    
+    <string name="utilCannotGetRooted">无法获取Root权限或被用户拒绝！</string>
+    <string name="utilBusyBoxNotFound">没安装BusyBox！</string>
+    <string name="utilBusyBoxIntro">把应用程序移动到系统区需要安装BusyBox。
+        \n请在下载安装后，再次尝试。</string>
+    <string name="utilPopStrError">错误</string>
+    <string name="utilPopStrReboot">重启动</string>
+    <string name="utilPopStrYes">是</string>
+    <string name="utilPopStrNo">否</string>
+    <string name="utilPopStrRebootReason">只有重启后方能生效。
+        \n要立刻重启动吗？</string>
+    <string name="utilPopStrRequireRoot">需要Root权限</string>
+    <string name="utilPopStrRequireRootDetail">要使该功能生效需要Root权限。
+        \n要申请Root权限吗？</string>
+    <string name="utilPopStrMultiInstallationFound">发现重复安装相同版本</string>
+    <string name="utilPopStrMultiInstallationFoundExplain">在系统和用户区安装相同的版本会导致各种异常。
+        \n\n用户区的版本将会被删除。
+        \n程序退出后请手动重启本程序。</string>
+    <string name="utilPopStrDownloadFromBrowser">用浏览器</string>
+    <string name="utilPopStrDownloadFromMarket">用市场</string>
+    <string name="packAppUpdateToSys">更新到系统内存</string>
+    <string name="packAppUpdateToSysExplain">更新的程序需要移动到系统区以保证正常运行。
+        \n\n移动过程会使得程序自动退出。
+        \n\n之后请手动重启该程序。</string>
+
 </resources>

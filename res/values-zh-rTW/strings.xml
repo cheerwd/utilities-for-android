@@ -37,5 +37,28 @@
     <string name="utilPopStrRunOnBoot">系統啓動後自動運行</string>
     <string name="utilPopStrTips">小貼士</string>
     <string name="selfUpdaterCheckDaily">每天</string>
-    
+    <string name="utilCannotGetRooted">無法獲取Root權限或被用戶拒絕！</string>
+    <string name="utilBusyBoxNotFound">沒安裝BusyBox！</string>
+    <string name="utilBusyBoxIntro">把應用程序移動到系統區需要安裝BusyBox。
+        \n請在下載安裝後，再次嘗試。</string>
+    <string name="utilPopStrError">錯誤</string>
+    <string name="utilPopStrReboot">重啓動</string>
+    <string name="utilPopStrYes">是</string>
+    <string name="utilPopStrNo">否</string>
+    <string name="utilPopStrRebootReason">只有重啓後方能生效。
+        \n要立刻重啓動嗎？</string>
+    <string name="utilPopStrRequireRoot">需要Root權限</string>
+    <string name="utilPopStrRequireRootDetail">要使該功能生效需要Root權限。
+        \n要申請Root權限嗎？</string>
+    <string name="utilPopStrMultiInstallationFound">發現重複安裝相同版本</string>
+    <string name="utilPopStrMultiInstallationFoundExplain">在系統和用戶區安裝相同的版本會導致各種異常。
+        \n\n用戶區的版本將會被刪除。
+        \n程序退出後請手動重啓本程序。</string>
+    <string name="utilPopStrDownloadFromBrowser">用浏覽器</string>
+    <string name="utilPopStrDownloadFromMarket">用市場</string>
+    <string name="packAppUpdateToSys">更新到系統內存</string>
+    <string name="packAppUpdateToSysExplain">更新的程序需要移動到系統區以保證正常運行。
+        \n\n移動過程會使得程序自動退出。
+        \n\n之後請手動重啓該程序。</string>
+
 </resources>
