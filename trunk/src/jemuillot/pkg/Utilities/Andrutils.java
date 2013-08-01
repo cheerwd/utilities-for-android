@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -243,8 +244,7 @@ public class Andrutils {
 	public static void showSkippableTip(Context context,
 			final SkippableTipListener stl) {
 
-		if (stl.getSkippable())
-		{
+		if (stl.getSkippable()) {
 			stl.onClose();
 			return;
 		}
@@ -309,5 +309,36 @@ public class Andrutils {
 			}
 		});
 
+	}
+
+	@SuppressWarnings("resource")
+	public static boolean isSameContent(String srcFilename, String destFilename) {
+
+		try {
+
+			FileInputStream src = new FileInputStream(srcFilename);
+			FileInputStream dst = new FileInputStream(destFilename);
+
+			byte[] bsrc = new byte[1024];
+			byte[] bdst = new byte[1024];
+
+			int n;
+			while ((n = src.read(bsrc)) != -1) {
+				int m = dst.read(bdst);
+
+				if (m == -1)
+					return false;
+
+				if (m != n)
+					return false;
+
+				if (!Arrays.equals(bsrc, bdst))
+					return false;
+			}
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

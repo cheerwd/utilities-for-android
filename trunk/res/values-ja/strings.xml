@@ -38,5 +38,28 @@
     <string name="utilPopStrRunOnBoot">システム再起動後自動起動する</string>
     <string name="utilPopStrTips">ヒント</string>
     <string name="selfUpdaterCheckDaily">毎日</string>
-    
+    <string name="utilCannotGetRooted">Root権限を取ることができません！</string>
+    <string name="utilBusyBoxNotFound">BusyBoxが見つけません ！</string>
+    <string name="utilBusyBoxIntro">アプリをシステムに移動を行うにはBusyBoxが必要です。
+        \nそれをダウンロードしインストールした後、もう一度試してください。</string>
+    <string name="utilPopStrError">エラー！</string>
+    <string name="utilPopStrReboot">再起動</string>
+    <string name="utilPopStrYes">はい</string>
+    <string name="utilPopStrNo">いいえ</string>
+    <string name="utilPopStrRebootReason">再起動した後しか有効になりません。
+        \n今すぐ再起動しますか？</string>
+    <string name="utilPopStrRequireRoot">Root権限が必要</string>
+    <string name="utilPopStrRequireRootDetail">これを有効になるにはRoot権限が必要です。
+        \n有効になりたいですか？</string>
+    <string name="utilPopStrMultiInstallationFound">多重のインストールが存在します！</string>
+    <string name="utilPopStrMultiInstallationFoundExplain">同時にシステムとユーザーメモリーにこのアプリが存在するのは困ります。
+        \n\nユーザーサイドのバージョンを消去を行います。
+        \nそのあと、このアプリを再スタートしてください。</string>
+    <string name="utilPopStrDownloadFromBrowser">ブラウザで</string>
+    <string name="utilPopStrDownloadFromMarket">マーケットで</string>
+    <string name="packAppUpdateToSys">システムメモリーへ更新</string>
+    <string name="packAppUpdateToSysExplain">更新されたアプリをシステムへ移動することが必要です。
+        \n\nそれを行う中にはアプリを終了することになりますので、
+        \n\nその後このアプリを再スタートしてください。</string>
+
 </resources>

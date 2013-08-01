@@ -45,5 +45,30 @@
     <string name="utilPopStrRunOnBoot">Run after system boots</string>
     <string name="utilPopStrTips">Tips</string>
     <string name="selfUpdaterCheckDaily">Daily</string>
+    <string name="utilCannotGetRooted">Can\'t get root access or denied by user!</string>
+    <string name="utilBusyBoxNotFound">BusyBox Not Found!</string>
+    <string name="utilBusyBoxIntro">Cannot move application into system without BusyBox.
+        \nPlease download and install BusyBox and try again.</string>
+    <string name="utilPopStrError">Error!</string>
+    <string name="utilPopStrReboot">Reboot</string>
+    <string name="utilPopStrYes">Yes</string>
+    <string name="utilPopStrNo">No</string>
+    <string name="utilPopStrRebootReason">This will not take effect until reboot.
+        \nDo you want to reboot now?</string>
+    <string name="utilPopStrRequireRoot">Root Required</string>
+    <string name="utilPopStrRequireRootDetail">This feature reqires root.
+        \nDo you want to enable this feature?</string>
+    <string name="utilPopStrMultiInstallationFound">Multiple Installation Found!</string>
+    <string name="utilPopStrMultiInstallationFoundExplain">Same version of the application is installed in both system and user memory.
+        \nThis will cause unexpected result.
+        \n\nThe one in the user memory will be removed.
+        \nPlease restart the application manually after it quits.</string>
+    <string name="utilPopStrDownloadFromBrowser">Via Browser</string>
+    <string name="utilPopStrDownloadFromMarket">Via Market</string>
+    <string name="packAppUpdateToSys">Update to System Memory</string>
+    <string name="packAppUpdateToSysExplain">The updated application must be moved to the system memory
+        \nto make it work normally.
+        \n\nThe application will quit automatically during it is being moved to the system.
+        \n\nPlease restart the application manually after it quits.</string>
 
 </resources>
