@@ -22,7 +22,7 @@ public class PackApp {
 
 	static public boolean moveToSystem(final Context c, boolean userRequested) {
 
-		final ApplicationInfo ai = c.getApplicationInfo();
+		final ApplicationInfo ai = getApplicationInfo(c);
 
 		final String dest = STR_SYSAPP + ai.packageName + ".apk";
 
@@ -154,7 +154,8 @@ public class PackApp {
 				Log.v(TAG, "New version Needs copy to System!");
 
 				new AlertDialog.Builder(c)
-						.setTitle(R.string.packAppUpdateToSys)// "New version Needs copy to System.")
+						.setTitle(R.string.packAppUpdateToSys)
+						// "New version Needs copy to System.")
 						.setMessage(R.string.packAppUpdateToSysExplain)
 						.setOnCancelListener(new OnCancelListener() {
 
@@ -183,8 +184,17 @@ public class PackApp {
 		return true;
 	}
 
-	public static void openInMarket(Context c, String packageName) {
+	private static ApplicationInfo getApplicationInfo(Context c) {
+		try {
+			PackageManager manager = c.getPackageManager();
+			PackageInfo info = manager.getPackageInfo(c.getPackageName(), 0);
+			return info.applicationInfo;
+		} catch (NameNotFoundException e) {
+		}
+		return null;
+	}
 
+	public static void openInMarket(Context c, String packageName) {
 
 		Intent viewIntent = new Intent(Intent.ACTION_VIEW,
 				Uri.parse("market://search?q=pname:" + packageName));
@@ -192,7 +202,7 @@ public class PackApp {
 		try {
 			c.startActivity(viewIntent);
 		} catch (Exception e) {
-			searchViaBrowser(c, packageName);			
+			searchViaBrowser(c, packageName);
 		}
 
 	}

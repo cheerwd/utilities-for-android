@@ -8,11 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.apache.http.util.EncodingUtils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -50,6 +53,23 @@ public class Andrutils {
 		System.exit(0);
 	}
 
+	public static String getStringFromTextFile(File f) {
+
+		return EncodingUtils.getString(getBytesFromFile(f), "UTF-8");
+
+	}
+
+	public static File getProperApplicationExternalDirectory(Context c) {
+
+//		if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 8) {
+//
+//			return c.getApplicationContext().getExternalFilesDir(null);
+//
+//		}
+		return new File(Environment.getExternalStorageDirectory().toString()
+				+ "/Android/data/" + c.getPackageName() + "/files/");
+	}
+
 	public static byte[] getBytesFromFile(File f) {
 		if (f == null) {
 			return null;
@@ -66,6 +86,18 @@ public class Andrutils {
 			return out.toByteArray();
 		} catch (IOException e) {
 		}
+		return null;
+	}
+
+	public static File writeStringToTextFile(String outputFile, String string) {
+
+		try {
+			return getFileFromBytes(string.getBytes("UTF-8"), outputFile);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 
@@ -340,5 +372,11 @@ public class Andrutils {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	static public ArrayList<String> expandInfo(String filename) {
+
+		return null;
+
 	}
 }
