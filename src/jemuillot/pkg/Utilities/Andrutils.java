@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
@@ -55,38 +54,60 @@ public class Andrutils {
 
 	public static String getStringFromTextFile(File f) {
 
-		return EncodingUtils.getString(getBytesFromFile(f), "UTF-8");
+		byte[] b = getBytesFromFile(f);
+		
+		if (b == null)
+			return null;
+		
+		return EncodingUtils.getString(b, "UTF-8");
 
 	}
 
 	public static File getProperApplicationExternalDirectory(Context c) {
 
-//		if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 8) {
-//
-//			return c.getApplicationContext().getExternalFilesDir(null);
-//
-//		}
-		return new File(Environment.getExternalStorageDirectory().toString()
-				+ "/Android/data/" + c.getPackageName() + "/files/");
+		File ret = new File(Environment.getExternalStorageDirectory()
+				.toString() + "/Android/data/" + c.getPackageName() + "/files/");
+
+		ret.mkdirs();
+
+		return ret;
 	}
 
 	public static byte[] getBytesFromFile(File f) {
+
 		if (f == null) {
 			return null;
 		}
+
+		FileInputStream stream = null;
+		ByteArrayOutputStream out = null;
+
 		try {
-			FileInputStream stream = new FileInputStream(f);
-			ByteArrayOutputStream out = new ByteArrayOutputStream(1000);
-			byte[] b = new byte[1000];
+			stream = new FileInputStream(f);
+			out = new ByteArrayOutputStream(1024);
+			byte[] b = new byte[1024];
 			int n;
 			while ((n = stream.read(b)) != -1)
 				out.write(b, 0, n);
-			stream.close();
-			out.close();
-			return out.toByteArray();
-		} catch (IOException e) {
+
+		} catch (Exception e) {
 		}
-		return null;
+
+		try {
+			if (out != null)
+				out.close();
+
+			if (stream != null)
+				stream.close();
+		} catch (Exception e) {
+		}
+
+		System.gc();
+
+		if (out == null)
+			return null;
+
+		return out.toByteArray();
 	}
 
 	public static File writeStringToTextFile(String outputFile, String string) {
@@ -104,22 +125,28 @@ public class Andrutils {
 	public static File getFileFromBytes(byte[] b, String outputFile) {
 		BufferedOutputStream stream = null;
 		File file = null;
+		FileOutputStream fstream = null;
 		try {
 			file = new File(outputFile);
-			FileOutputStream fstream = new FileOutputStream(file);
+			fstream = new FileOutputStream(file);
 			stream = new BufferedOutputStream(fstream);
 			stream.write(b);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (stream != null) {
-				try {
-					stream.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
 		}
+		if (stream != null) {
+			try {
+				stream.close();
+				fstream.close();
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+		}
+
+		System.gc();
+		
 		return file;
 	}
 
