@@ -60,5 +60,9 @@
     <string name="packAppUpdateToSysExplain">更新的程序需要移动到系统区以保证正常运行。
         \n\n移动过程会使得程序自动退出。
         \n\n之后请手动重启该程序。</string>
+    <string name="packAppConflictInstallationFound">发现冲突的程序！</string>
+    <string name="packAppConflictInstallationExplain">当应用程序的包名或者签名发生了变更，
+        \n需要卸载之前的版本以保障新版能正常使用。
+        \n\n现在立刻卸载旧版吗？</string>
 
 </resources>

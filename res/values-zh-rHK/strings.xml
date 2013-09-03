@@ -61,4 +61,10 @@
     <string name="packAppUpdateToSysExplain">更新歌程序需要移動到系統區先可以保證正常運行。
         \n\n移動過程會极速程序嘅运行。
         \n\n之後請手動重新啓动本程序。</string>
+        
+    <string name="packAppConflictInstallationFound">發現沖突程序！</string>
+    <string name="packAppConflictInstallationExplain">當應用程序嘅包名或者簽名發生咗變更，
+        \n響卸載先前嘅版本之後新版先可以正常使用。
+        \n\n要唔要即刻卸載舊版？</string>
+    
 </resources>

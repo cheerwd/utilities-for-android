@@ -12,12 +12,20 @@ public class RootCommands extends ExecuteAsRoot {
 
 		return execute(lcb.getCommands());
 	}
+	final static public boolean mountSystemAsRW() {
+
+		LinuxCommandsBuilder lcb = new LinuxCommandsBuilder();
+
+		return execute(lcb.getCommands());
+	}
+
 
 	final static public boolean delete(String filename) {
 		LinuxCommandsBuilder lcb = new LinuxCommandsBuilder();
 
 		lcb.chmod(777, filename);
 		lcb.rm(filename);
+		lcb.rmdir(filename);
 
 		return execute(lcb.getCommands());
 	}

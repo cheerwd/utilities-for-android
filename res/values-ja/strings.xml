@@ -61,5 +61,9 @@
     <string name="packAppUpdateToSysExplain">更新されたアプリをシステムへ移動することが必要です。
         \n\nそれを行う中にはアプリを終了することになりますので、
         \n\nその後このアプリを再スタートしてください。</string>
+    <string name="packAppConflictInstallationFound">衝突するアプリが見つかれます！</string>
+    <string name="packAppConflictInstallationExplain">アプリのパッケジー、或いは署名が変更された場合、
+        \n前のバージョンはアンインストールされなければ新たなバージョンがうまく使えないことになります。
+        \n\n今すぐ前のバージョンのアンインストールを行いますか？</string>
 
 </resources>

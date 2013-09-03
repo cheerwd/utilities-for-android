@@ -43,7 +43,7 @@ class AppWidgetManagerCompat3 implements
 						new Class[] { Integer.TYPE, ComponentName.class });
 			} catch (NoSuchMethodException e2) {
 				bindFailed = true;
-				Log.v(TAG, "bindAppWidgetId Doesn't Exist");
+				Log.v(TAG, "bindAppWidgetId Doesn't Exist: " + e2.toString());
 			}
 			if (m != null) {
 				try {
@@ -63,7 +63,7 @@ class AppWidgetManagerCompat3 implements
 				return (Boolean) m.invoke(awm, appWidgetId, provider);
 			} catch (Exception e) {
 				bindFailed = true;
-				Log.v(TAG, "bindAppWidgetIdIfAllowed Failed");
+				Log.v(TAG, "bindAppWidgetIdIfAllowed Failed: " + e.toString());
 			}
 		}
 
@@ -123,6 +123,31 @@ class AppWidgetManagerCompat3 implements
 		return awm;
 	}
 
+	@Override
+	public boolean bindAppWidgetId(int appWidgetId, ComponentName provider) {
+
+		Method m = null;
+
+		try {
+			m = AppWidgetManager.class.getMethod("bindAppWidgetId",
+					new Class[] { Integer.TYPE, ComponentName.class });
+		} catch (NoSuchMethodException e) {
+
+			return bindAppWidgetIdIfAllowed(appWidgetId, provider);
+
+		}
+		if (m != null) {
+			try {
+				return (Boolean) m.invoke(awm, appWidgetId, provider);
+			} catch (Exception e) {
+				Log.v(TAG, "bindAppWidgetId Failed:" + e.toString());
+				return bindAppWidgetIdIfAllowed(appWidgetId, provider);
+			}
+		}
+
+		return true;
+	}
+
 }
 
 class AppWidgetManagerCompat16 extends AppWidgetManagerCompat3 {
@@ -162,6 +187,8 @@ public class AppWidgetManagerCompat {
 		public AppWidgetManager getUnresolved();
 
 		public boolean supportUserBind();
+
+		public boolean bindAppWidgetId(int appWidgetId, ComponentName provider);
 
 		public boolean bindAppWidgetIdIfAllowed(int appWidgetId,
 				ComponentName provider);
