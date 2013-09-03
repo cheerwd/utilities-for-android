@@ -46,6 +46,35 @@ class PermissionHelper {
 }
 
 public class Andrutils {
+	
+	public static void showMessageBox(Context context, final String message)
+	{
+		Andrutils.showSkippableTip(context, new SkippableTipListener(){
+
+			@Override
+			public CharSequence getTipString() {
+				return message.subSequence(0, message.length());
+			}
+
+			@Override
+			public int getTipResId() {
+				return 0;
+			}
+
+			@Override
+			public boolean getSkippable() {
+				return false;
+			}
+
+			@Override
+			public void setSkippable(boolean isChecked) {
+			}
+
+			@Override
+			public boolean onClose() {
+				return true;
+			}});
+	}
 
 	public static void applicationExit() {
 		android.os.Process.killProcess(android.os.Process.myPid());
@@ -55,10 +84,10 @@ public class Andrutils {
 	public static String getStringFromTextFile(File f) {
 
 		byte[] b = getBytesFromFile(f);
-		
+
 		if (b == null)
 			return null;
-		
+
 		return EncodingUtils.getString(b, "UTF-8");
 
 	}
@@ -115,7 +144,6 @@ public class Andrutils {
 		try {
 			return getFileFromBytes(string.getBytes("UTF-8"), outputFile);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -128,6 +156,9 @@ public class Andrutils {
 		FileOutputStream fstream = null;
 		try {
 			file = new File(outputFile);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
 			fstream = new FileOutputStream(file);
 			stream = new BufferedOutputStream(fstream);
 			stream.write(b);
@@ -146,7 +177,7 @@ public class Andrutils {
 		}
 
 		System.gc();
-		
+
 		return file;
 	}
 
@@ -295,7 +326,7 @@ public class Andrutils {
 
 		/**
 		 * 
-		 * @return true to allow close the message box
+		 * @return true to allow closing the message box
 		 */
 		public boolean onClose();
 	}

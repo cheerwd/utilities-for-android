@@ -39,7 +39,11 @@ public class LinuxCommandsBuilder {
 		commands.add(cmd);
 		return cmd;
 	}
-
+	public final String rmdir(String filename) {
+		String cmd = "rm -fr " + filename;
+		commands.add(cmd);
+		return cmd;
+	}
 	public final String uninstall(String packageName) {
 		String cmd = "pm uninstall " + packageName;
 		commands.add(cmd);

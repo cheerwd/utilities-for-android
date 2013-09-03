@@ -3,6 +3,7 @@ package jemuillot.pkg.Utilities;
 import java.io.File;
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -16,9 +17,82 @@ import android.util.Log;
 
 public class PackApp {
 
-	private static final String STR_SYSAPP = "/system/app/";
 	private static final String TAG = "PackApp";
+
+	private static final String STR_SYSAPP = "/system/app/";
+	private static final String STR_APPDATA = "/data/data/";
+	private static final String STR_SYSDALVIKCACHE = "/data/dalvik-cache/system@app@";
+	private static final String STR_APPDALVIKCACHE = "/data/dalvik-cache/data@app@";
+
 	protected static final String PKG_BUSYBOX = "stericson.busybox";
+
+	static public boolean removeConflictingPackage(final Context context,
+			final String packageName, CharSequence reason) {
+
+		PackageManager manager = context.getPackageManager();
+		final PackageInfo info;
+
+		try {
+			info = manager.getPackageInfo(packageName, 0);
+		} catch (NameNotFoundException e) {
+			return true;
+		}
+
+		if (info == null)
+			return true;
+
+		Builder alert = new AlertDialog.Builder(context)
+				.setTitle(R.string.packAppConflictInstallationFound)
+				.setNegativeButton(R.string.utilPopStrNo, null)
+				.setPositiveButton(R.string.utilPopStrYes,
+						new AlertDialog.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+
+								if ((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+									uninstallPackage(context, packageName,
+											false, true);
+								} else {
+									uninstallPackage(context, packageName, true,
+											false);
+								}
+								
+
+							}
+						});
+
+		if (reason != null)
+			alert.setMessage(reason);
+		else
+			alert.setMessage(R.string.packAppConflictInstallationExplain);
+
+		alert.create().show();
+
+		return true;
+
+	}
+
+	static public boolean uninstallPackage(Context context, String packageName,
+			boolean user, boolean system) {
+
+		if (user) {
+			Uri packageURI = Uri.parse("package:" + packageName);
+			Intent mIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+			context.startActivity(mIntent);
+		}
+
+		if (system) {
+			RootCommands.delete(STR_SYSAPP + packageName + ".apk");
+			RootCommands.delete(STR_SYSAPP + packageName + ".odex");
+			RootCommands.delete(STR_APPDATA + packageName);
+			RootCommands.delete(STR_SYSDALVIKCACHE + packageName
+					+ ".apk@classes.dex");
+		}
+
+		return system;
+	}
 
 	static public boolean moveToSystem(final Context c, boolean userRequested) {
 
